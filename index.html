@@ -1,8 +1,9 @@
 <html>
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <style> path {stroke: black;}</style>
+<style> rect {fill: lightblue; stroke: black; }</style>
 <body>
-<svg width=300 height=300>
+<svg width=900 height=900>
 </svg>
 <script>
 var data = [4,8,15,16,23,42];
@@ -17,8 +18,9 @@ var xs= d3.scaleBand().domain([0,1,2,3,4,5]).range([0,200]);
 var ys = d3.scaleLinear().domain([0,42]).range([200,0]);
 var hs = d3.scaleLinear().domain([0,42]).range([0,200]);
 
+
 d3.select("svg")
-.append("g").attr("transform","translate(50,50)")
+.append("g").attr("transform","translate(150,450)")
 .selectAll('rect').data(data).enter()
 .append("rect")
  .attr('x', function(d,i){return xs(i);})
