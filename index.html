@@ -1,34 +1,32 @@
 <html>
 <script src='https://d3js.org/d3.v5.min.js'></script>
-<style> path {stroke: black;}</style>
-<style> rect {fill: lightblue; stroke: black; }</style>
-<body>
-<svg width=900 height=900>
+<style> circle {fill: lightblue; stroke: black;} </style>
+<body onload='init()'>
+<svg width=300 height=300>
 </svg>
 <script>
-var data = [4,8,15,16,23,42];
-var color = ['pink','lightyellow','lightgreen','lightcyan','lightblue','violet'];
-var pie = d3.pie();
-var arc = d3.arc().innerRadius(0).outerRadius(100);
- 
-d3.select('svg').append('g').attr('transform', "translate(150,150)").selectAll('Path').data(pie(data)).enter().append('path')
-.attr('d',arc).attr('fill',function(d,i){return color[i];});
-   
-var xs= d3.scaleBand().domain([0,1,2,3,4,5]).range([0,200]);
-var ys = d3.scaleLinear().domain([0,42]).range([200,0]);
-var hs = d3.scaleLinear().domain([0,42]).range([0,200]);
+async function init() {
+const data = await d3.csv('https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/master/cars2017.csv');
+ var logScale_y = d3.scaleLog().domain([10, 150]).range([200,0]);
+ var logScale_x = d3.scaleLog().domain([10, 150]).range([0,200]);
+  d3.select('svg')
+    .append('g').attr('transform','translate(50,50)')
+    .selectAll('circle').data(data).enter().append('circle')
+    .attr('cx', function(d,i) {return logScale_x(d.AverageCityMPG);})
+    .attr('cy', function(d,i) {return logScale_y(d.AverageHighwayMPG);})
+    .attr('r', function(d){return (parseInt(d.EngineCylinders)+2);});
 
+
+ d3.select("svg")
+.append("g").attr("transform","translate(50,50)").call(d3.axisLeft(logScale_y).tickValues([10,20,50,100]).tickFormat(d3.format("")));
 
 d3.select("svg")
-.append("g").attr("transform","translate(150,450)")
-.selectAll('rect').data(data).enter()
-.append("rect")
- .attr('x', function(d,i){return xs(i);})
- .attr('y', function(d){return ys(d);})
- .attr('width', 200/6)
- .attr('height', function(d){return hs(d);});
-
-   
+.append("g").attr("transform","translate(50,250)")
+.call(d3.axisBottom(logScale_x)
+.tickValues([10,20,50,100]).tickFormat(d3.format("")));
+ 
+ 
+   https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/master/cars2017.csv
    
 </script>
 </body>
