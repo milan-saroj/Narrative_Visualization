@@ -13,6 +13,19 @@ var arc = d3.arc().innerRadius(0).outerRadius(100);
 d3.select('svg').append('g').attr('transform', "translate(150,150)").selectAll('Path').data(pie(data)).enter().append('path')
 .attr('d',arc).attr('fill',function(d,i){return color[i];});
    
+var xs= d3.scaleBand().domain([0,1,2,3,4,5]).range([0,200]);
+var ys = d3.scaleLinear().domain([0,42]).range([200,0]);
+var hs = d3.scaleLinear().domain([0,42]).range([0,200]);
+
+d3.select("svg")
+.append("g").attr("transform","translate(50,50)")
+.selectAll('rect').data(data).enter()
+.append("rect")
+ .attr('x', function(d,i){return xs(i);})
+ .attr('y', function(d){return ys(d);})
+ .attr('width', 200/6)
+ .attr('height', function(d){return hs(d);});
+
    
    
 </script>
