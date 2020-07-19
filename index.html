@@ -1,5 +1,10 @@
+<!DOCTYPE html>
 <html>
+<body>
+<meta charset="utf-8">
 
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
 <style type="text/css">
 /* 13. Basic Styling with CSS */
 
@@ -31,62 +36,73 @@
 }
 
 </style>
-
-
-<script src='https://d3js.org/d3.v5.min.js'>  </script>
-<style> circle {fill: lightblue; stroke: black;} </style>
-<body onload='init()'>
-<svg width=1200 height=700>
-</svg>
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
 <script>
-async function init() {
 
-  const data = await d3.csv('https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/master/US_cases__.csv');
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 30, left: 60},
+    width = 1000 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
- //  var time_Format = d3.timeFormat("%m/%d/%y");
- // //  data.map(function(d){
- // //   d["date"] = timeFormat.parse(d["date"]);
- // //    return d;
- // // });
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
 
+//Read the data
+d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/master/US_cases__.csv",
 
-  var ys = d3.scaleLinear().domain([0,4000000]).range([300,0]);
-  var xs = d3.scaleLinear().domain([0,190]).range([0,1000]);
-  // var xs = d3.scaleTime().domain([time_Format(new Date(01/21/2020)), time_Format(new Date(01/21/2020))]).range([0,1000]);
-  var line = d3.line()
-    .x(function(d, i) { return xs(d.days); }) // set the x values for the line generator
-    .y(function(d) { return ys(d.US_cases); }) // set the y values for the line generator
-    .curve(d3.curveMonotoneX) // apply smoothing to the line
+  
+  function(d){
+    return { date : d3.timeParse("%m/%d/%Y")(d.date), US_cases : d.US_cases, US_death : d.US_death }
+  },
 
-    var line2 = d3.line()
-      .x(function(d, i) { return xs(d.days); }) // set the x values for the line generator
-      .y(function(d) { return ys(d.US_death); }) // set the y values for the line generator
-      .curve(d3.curveMonotoneX) // apply smoothing to the line
+  // Now I can use this dataset:
+  function(data) {
 
-//For drawing circle at each datapoint
-   // d3.select('svg')
-   //   .append('g').attr('transform','translate(100,100)')
-   //   .selectAll('circle').data(data).enter().append('circle')
-   //   .attr('cx', function(d,i) {return xs(d.days);})
-   //   // .attr('cx', function(d,i) {return xs(d.US_death);})
-   //   .attr('cy', function(d,i) {return ys(d.US_cases);})
-   //   .attr('r',0.025);
+    // Add X axis --> it is a date format
+    var x = d3.scaleTime()
+      .domain([new Date("1/21/2020"), new Date("7/16/2020")])
+      .range([ 0, width ]);
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
 
+    // Add Y axis
+    var y = d3.scaleLinear()
+      .domain([0,4000000])
+      .range([ height, 0 ]);
+    svg.append("g")
+      .call(d3.axisLeft(y));
 
-        d3.select('svg')
-          .append('g').attr('transform','translate(100,100)').append("path")
+      var line = d3.line()
+      .x(function(d) { return x(d.date) })
+      .y(function(d) { return y(d.US_cases) }) // set the y values for the line generator
+        .curve(d3.curveMonotoneX); // apply smoothing to the line
+
+      var line2 = d3.line()
+        .x(function(d) { return x(d.date) })
+        .y(function(d) { return y(d.US_death) }) // set the y values for the line generator
+          .curve(d3.curveMonotoneX);
+    // Add the line
+    svg.append('g').append("path")
+      .datum(data)
+      .attr("class", "line")
+      .attr("d", line)
+      .transition()
+      .ease(d3.easeSin)
+      .duration(4000)
+      .style('stroke', "red")
+      .attr('stroke-width', 5);
+
+      svg.append('g').enter().append("path")
         .datum(data)
         .attr("class", "line")
-        .attr("d", line).transition()
-        .ease(d3.easeSin)
-        .duration(4000)
-        .style('stroke', "red")
-        .attr('stroke-width', 5);
-
-        d3.select('svg')
-          .append('g').attr('transform','translate(100,100)').append("path")
-        .datum(data)
-        .attr("class", "line2")
         .attr("d", line2)
         .transition()
         .ease(d3.easeSin)
@@ -94,29 +110,18 @@ async function init() {
         .style('stroke', "blue")
         .attr('stroke-width', 5);
 
+        svg.append('g')
+          // .attr('transform','translate(100,100)')
+          .append("path")
+        .datum(data)
+        .attr("class", "line")
+        .attr("d", line2).transition()
+        .ease(d3.easeSin)
+        .duration(4000)
+        .style('stroke', "blue")
+        .attr('stroke-width', 5);
 
-      
+     
+})
 
-  d3.select("svg")
- .append("g").attr("transform","translate(100,100)").call(d3.axisLeft(ys).tickValues([1000000,2000000,3000000,4000000]).tickFormat(d3.format("")));
-
-
-
- d3.select("svg")
- .append("g").attr("transform","translate(100,400)").call(d3.axisBottom(xs).tickValues([10,20,30,40]).tickFormat(d3.format(""))); // d3.select("svg")
- // .append("g").attr("transform","translate(100,600)")
- // .call(d3.axisBottom(xs);
-
-
-// var data = [4,8,15,16,23,42];
-// var color = ['pink','lightyellow','lightgreen','lightcyan','lightblue','violet'];
-// var pie = d3.pie();
-// var arc = d3.arc().innerRadius(0).outerRadius(100);
-// d3.select('svg').append('g').attr('transform', "translate(150,150)").selectAll('Path').data(pie(data)).enter().append('path')
-// .attr('d',arc).attr('fill',function(d,i){return color[i];});
-
-
-}
 </script>
-</body>
-</html>
