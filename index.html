@@ -5,45 +5,16 @@
 
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
-<style type="text/css">
-/* 13. Basic Styling with CSS */
+<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
 
-/* Style the lines by removing the fill and applying a stroke */
-.line {
-    fill: none;
-    stroke: #ffcccb;
-    stroke-width: 2;
-}
-.line2 {
-    fill: none;
-    stroke: lightblue;
-    stroke-width: 2;
-}
-.overlay {
-  fill: none;
-  pointer-events: all;
-}
-
-/* Style the dots by assigning a fill and stroke */
-.dot {
-    fill: #ffab00;
-    stroke: #fff;
-}
-
-  .focus circle {
-  fill: none;
-  stroke: steelblue;
-}
-
-</style>
-<!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
 <script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 1000 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 100, right: 30, bottom: 30, left: 250},
+    width = 1500 - margin.left - margin.right,
+    height = 800 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -57,9 +28,9 @@ var svg = d3.select("#my_dataviz")
 //Read the data
 d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/master/US_cases__.csv",
 
-  
+  // When reading the csv, I must format variables:
   function(d){
-    return { date : d3.timeParse("%m/%d/%Y")(d.date), US_cases : d.US_cases, US_death : d.US_death }
+    return { date : d3.timeParse("%m/%d/%Y")(d.date), US_cases : d.US_cases }
   },
 
   // Now I can use this dataset:
@@ -69,26 +40,29 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
     var x = d3.scaleTime()
       .domain([new Date("1/21/2020"), new Date("7/16/2020")])
       .range([ 0, width ]);
-    svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
+
+   svg.append("g").attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%m/%d")));
 
     // Add Y axis
     var y = d3.scaleLinear()
       .domain([0,4000000])
       .range([ height, 0 ]);
+
     svg.append("g")
-      .call(d3.axisLeft(y));
+      .call(d3.axisLeft(y).tickFormat(d3.format(".2s")));
 
       var line = d3.line()
       .x(function(d) { return x(d.date) })
-      .y(function(d) { return y(d.US_cases) }) // set the y values for the line generator
-        .curve(d3.curveMonotoneX); // apply smoothing to the line
+      .y(function(d) { return y(d.US_cases) })
+        .curve(d3.curveMonotoneX);
 
       var line2 = d3.line()
         .x(function(d) { return x(d.date) })
-        .y(function(d) { return y(d.US_death) }) // set the y values for the line generator
+        .y(function(d) { return y(d.US_death) })
           .curve(d3.curveMonotoneX);
+
+
     // Add the line
     svg.append('g').append("path")
       .datum(data)
@@ -96,32 +70,134 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
       .attr("d", line)
       .transition()
       .ease(d3.easeSin)
-      .duration(4000)
+      .duration(2000)
       .style('stroke', "red")
       .attr('stroke-width', 5);
 
-      svg.append('g').enter().append("path")
-        .datum(data)
-        .attr("class", "line")
-        .attr("d", line2)
-        .transition()
-        .ease(d3.easeSin)
-        .duration(4000)
-        .style('stroke', "blue")
-        .attr('stroke-width', 5);
 
-        svg.append('g')
-          // .attr('transform','translate(100,100)')
-          .append("path")
-        .datum(data)
-        .attr("class", "line")
-        .attr("d", line2).transition()
-        .ease(d3.easeSin)
-        .duration(4000)
-        .style('stroke', "blue")
-        .attr('stroke-width', 5);
+    svg.append('g')
+      .append("path")
+      .datum(data)
+      .attr("class", "line")
+      .attr("d", line2).transition()
+      .ease(d3.easeSin)
+      .duration(4000)
+      .style('stroke', "blue")
+      .attr('stroke-width', 5);
 
-     
+    svg.append('text')
+      .attr('y',-20)
+      .attr('x',430)
+      .attr('class', 'title')
+      .text('COVID-19 Cases in USA')
+
+    svg.append('text')
+      .attr('y',-60)
+      .attr('x',-330)
+      .attr('class', 'title')
+      .text('COVID-19 Cases')
+  		.style('font-size',18)
+      .attr("transform",
+            "rotate(-90)")
+      .attr('text-anchor','middle')
+
+      const annotations = [
+    {
+    note: {
+      title:"March 13,2020",
+      label: "POTUS declare National Emergency"
+    },
+    connector: {
+      end: "dot",        // none, or arrow or dot
+      type: "line",       // Line or curve
+      points: 3,           // Number of break in the curve
+      lineType : "horizontal"
+    },
+    color: ["#69b3a2"],
+    x: x(new Date("3/13/2020")),  // Takes the pixel number to convert to number
+    y:  y(2224),
+    dy: -100,
+    dx: -120
+  },
+  {
+  note: {
+    title:"April 11,2020",
+    label: "Major disaster declaration in all 50 states(first time in US history)"
+  },
+  connector: {
+    end: "dot",         // none, or arrow or dot
+    type: "line",       // Line or curve
+    points: 3,           // Number of break in the curve
+    lineType : "horizontal"
+  },
+  color: ["#69b3a2"],
+  x: x(new Date("4/13/2020")),  // Takes the pixel number to convert to number
+  y:  y(584018),
+  dy: -100,
+  dx: 20
+},
+{
+note: {
+  title:"March 23,2020",
+  label: "Stock Market hit 3-year low"
+},
+connector: {
+  end: "dot",        // none, or arrow or dot
+  type: "line",       // Line or curve
+  points: 3,           // Number of break in the curve
+  lineType : "horizontal"
+},
+
+x: x(new Date("3/23/2020")),  // Takes the pixel number to convert to number
+y:  y(43505),
+dy: -100,
+dx: -30
+},
+{
+note: {
+  title:"May 26,2020",
+  label: "Beginning of Protest over death of George Floyd"
+},
+connector: {
+  end: "dot",        // none, or arrow or dot
+  type: "line",       // Line or curve
+  points: 3,           // Number of break in the curve
+  lineType : "horizontal"
+},
+x: x(new Date("5/26/2020")),  // Takes the pixel number to convert to number
+y:  y(1689248),
+dy: -100,
+dx: -30
+},
+{
+note: {
+  title:"May 31,2020",
+  label: "Memorial Day:Coronavirus hospitalizations rise sharply after Holiday"
+},
+connector: {
+  end: "dot",        // none, or arrow or dot
+  type: "line",       // Line or curve
+  points: 3,           // Number of break in the curve
+  lineType : "horizontal"
+},
+x: x(new Date("5/31/2020")),  // Takes the pixel number to convert to number
+y:  y(1799035),
+dy: -130,
+dx: 80
+},
+
+
+
+
+    ]
+
+    const makeAnnotations = d3.annotation()
+         .type(d3.annotationLabel)
+         .annotations(annotations)
+
+       svg.append("g")
+         .attr("class", "annotation-group")
+         .call(makeAnnotations)
 })
 
 </script>
