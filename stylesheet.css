@@ -1,0 +1,46 @@
+
+.line {
+    fill: none;
+    stroke: #ffcccb;
+    stroke-width: 4;
+}
+.line2 {
+    fill: none;
+    stroke: lightblue;
+    stroke-width: 2;
+}
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+text {
+  font-size: 16px;
+  font-family: serif;
+}
+/* Style the dots by assigning a fill and stroke */
+.dot {
+    fill: #ffab00;
+    stroke: #fff;
+}
+
+  .focus circle {
+  fill: none;
+  stroke: steelblue;
+}
+.annotation-note-title, text.title {
+      font-weight: bold;
+    }
+.title {
+  font-size: 35px;
+  font-family: serif;
+}
+
+.tick text{
+  fill: #635F5D;
+}
+.tick line{
+  fill: #C0C0BB;
+}
+
+</style>
