@@ -5,44 +5,6 @@
 
 </head>
 <body>
-    <style>
-  /* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-}
-
-/* Style the buttons inside the tab */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-}
-  </style>
 
   <script src="https://d3js.org/d3.v4.js"></script>
   <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
@@ -53,15 +15,19 @@
   <button class="tablinks" onclick="openCity(event, 'first_scene')">first_scene</button>
   <button class="tablinks" onclick="openCity(event, 'second_scene')">second_scene</button>
   <button class="tablinks" onclick="openCity(event, 'third_scene')">third_scene</button>
+  <button class="tablinks" onclick="openCity(event, 'fourth_scene')">forth_scene</button>
   <button class="tablinks" onclick="openCity(event, 'final_scene')">final_scene</button>
 
 </div>
 
 
+
+
+<div id="first_scene" class="tabcontent"></div>
+<div id="fourth_scene" class="tabcontent"></div>
 <div id="final_scene" class="tabcontent"></div>
 <div id="second_scene" class="tabcontent"></div>
 <div id="third_scene" class="tabcontent"></div>
-<div id="first_scene" class="tabcontent"></div>
 
 
 
@@ -96,6 +62,14 @@
                     .attr("transform",
                           "translate(" + margin.left + "," + margin.top + ")");
 
+                var svg_forth = d3.select("#fourth_scene")
+                  .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                  .append("g")
+                    .attr("transform",
+                          "translate(" + margin.left + "," + margin.top + ")");
+
                 var svg_final = d3.select("#final_scene")
                   .append("svg")
                     .attr("width", width + margin.left + margin.right)
@@ -105,7 +79,7 @@
                           "translate(" + margin.left + "," + margin.top + ")");
 
 
-                  d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/master/US_cases__.csv",
+                  d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/master/US_cases__latest_after_march.csv",
 
 
                     function(d){
@@ -118,7 +92,7 @@
         function(data) {
 
 
-              var x = d3.scaleTime().domain([new Date("1/21/2020"), new Date("7/16/2020")]).range([ 0, width ]);
+              var x = d3.scaleTime().domain([new Date("3/11/2020"), new Date("7/16/2020")]).range([ 0, width ]);
               var y = d3.scaleLinear().domain([0,4000000]).range([ height, 0 ]);
 
 
@@ -170,6 +144,11 @@
                   var line_NY_NJ = d3.line()
                     .x(function(d) { return x(d.date) })
                     .y(function(d) { return (y(d.ny_nj)) })
+                      .curve(d3.curveMonotoneX);
+
+                  var line_TX_FL_CA = d3.line()
+                    .x(function(d) { return x(d.date) })
+                    .y(function(d) { return (y(d.tx_flo_cali)) })
                       .curve(d3.curveMonotoneX);
 
 
@@ -310,7 +289,7 @@
 
                                      //********************************second_scene********************************//
 
-                                     var x1 = d3.scaleTime().domain([new Date("1/21/2020"), new Date("7/16/2020")]).range([ 0, width ]);
+                                     var x1 = d3.scaleTime().domain([new Date("3/11/2020"), new Date("7/16/2020")]).range([ 0, width ]);
                                      var y1 = d3.scaleLinear().domain([0,500000]).range([ height, 0 ]);
 
                                      var line_NY_2= d3.line()
@@ -328,16 +307,6 @@
                               svg_second.append("g")
                                 .call(d3.axisLeft(y1).tickFormat(d3.format(".2s")));
 
-
-     // /*line*/                     svg_second.append('g').append("path")
-     //                                   .datum(data)
-     //                                   .attr("class", "line")
-     //                                   .attr("d", line_US)
-     //                                   .transition()
-     //                                   .ease(d3.easeSin)
-     //                                   .duration(2000)
-     //                                   .style('stroke', "red")
-     //                                   .attr('stroke-width', 5);
 
 
 
@@ -361,21 +330,25 @@
                                          .append("path")
                                          .datum(data)
                                          .attr("class", "line")
-                                         .attr("d", line_NY_2).transition()
-                                         .ease(d3.easeSin)
-                                         .duration(4000)
-                                         .style('stroke', "green")
-                                         .attr('stroke-width', 5);
+                                         .style('stroke', "#7ed5de")
+                                         .attr("d", line_NY_2)
+                                         // .transition()
+                                         // .ease(d3.easeSin)
+                                         // .duration(4000)
+                                         // .style('stroke', "green")
+                                         // .attr('stroke-width', 5);
 
                                          svg_second.append('g')
                                            .append("path")
                                            .datum(data)
                                            .attr("class", "line")
-                                           .attr("d", line_NJ_2).transition()
-                                           .ease(d3.easeSin)
-                                           .duration(4000)
-                                           .style('stroke', "green")
-                                           .attr('stroke-width', 5);
+                                           .style('stroke', "#7edea1")
+                                           .attr("d", line_NJ_2)
+                                           // .transition()
+                                           // .ease(d3.easeSin)
+                                           // .duration(4000)
+                                           // .style('stroke', "green")
+                                           // .attr('stroke-width', 5);
 
 
                                            // svg_second.append('g')
@@ -423,18 +396,6 @@
                                       .call(d3.axisLeft(y1).tickFormat(d3.format(".2s")));
 
 
-                                      // /*line*/                     svg_second.append('g').append("path")
-                                      //                                   .datum(data)
-                                      //                                   .attr("class", "line")
-                                      //                                   .attr("d", line_US)
-                                      //                                   .transition()
-                                      //                                   .ease(d3.easeSin)
-                                      //                                   .duration(2000)
-                                      //                                   .style('stroke', "red")
-                                      //                                   .attr('stroke-width', 5);
-
-
-
                                        svg_third.append('text')
                                          .attr('y',-20)
                                          .attr('x',430)
@@ -455,31 +416,125 @@
                                            .append("path")
                                            .datum(data)
                                            .attr("class", "line")
-                                           .attr("d", line_TX_2).transition()
-                                           .ease(d3.easeSin)
-                                           .duration(4000)
-                                           .style('stroke', "green")
-                                           .attr('stroke-width', 5);
+                                           .style('stroke', "#e8a643")
+                                           .attr("d", line_TX_2)
+                                           // .transition()
+                                           // .ease(d3.easeSin)
+                                           // .duration(4000)
+                                           // .style('stroke', "green")
+                                           // .attr('stroke-width', 5);
 
                                            svg_third.append('g')
                                              .append("path")
                                              .datum(data)
                                              .attr("class", "line")
-                                             .attr("d", line_CA_2).transition()
-                                             .ease(d3.easeSin)
-                                             .duration(4000)
-                                             .style('stroke', "green")
-                                             .attr('stroke-width', 5);
+                                             .style('stroke', "#e3e843")
+                                             .attr("d", line_CA_2)
+                                             // .transition()
+                                             // .ease(d3.easeSin)
+                                             // .duration(4000)
+                                             // .style('stroke', "green")
+                                             // .attr('stroke-width', 5);
 
                                              svg_third.append('g')
                                                .append("path")
                                                .datum(data)
                                                .attr("class", "line")
-                                               .attr("d", line_FL_2).transition()
-                                               .ease(d3.easeSin)
-                                               .duration(4000)
-                                               .style('stroke', "green")
-                                               .attr('stroke-width', 5);
+                                               .style('stroke', "#e5eba2")
+                                               .attr("d", line_FL_2)
+                                               // .transition()
+                                               // .ease(d3.easeSin)
+                                               // .duration(4000)
+                                               // .style('stroke', "green")
+                                               // .attr('stroke-width', 5);
+
+
+
+
+
+                        //********************************fourth_scene********************************//
+
+
+                        svg_forth.append("g").attr("transform", "translate(0," + height + ")")
+                           .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%m/%d")));
+
+
+
+                         svg_forth.append("g")
+                           .call(d3.axisLeft(y).tickFormat(d3.format(".2s")));
+
+
+
+
+                         svg_forth.append('g').append("path")
+                           .datum(data)
+                           .attr("class", "line")
+                           .attr("d", line_US)
+                           .transition()
+                           .ease(d3.easeSin)
+                           .duration(4000)
+                           .style('stroke', "red")
+                           .attr('stroke-width', 5);
+
+
+
+
+
+                                 svg_forth.append('g')
+                                   .append("path")
+                                   .datum(data)
+                                   .attr("class", "line")
+                                   .style('stroke', "#736c72")
+                                   .attr("d", line_Top5)
+                                   // .transition()
+                                   // .ease(d3.easeSin)
+                                   // .duration(4000)
+                                   // .style('stroke', "black")
+                                   // .attr('stroke-width', 5);
+
+
+                                   svg_forth.append('g')
+                                     .append("path")
+                                     .datum(data)
+                                     .attr("class", "line")
+                                     .style('stroke', "#e8bc43")
+                                     .attr("d", line_TX_FL_CA)
+                                     // .transition()
+                                     // .ease(d3.easeSin)
+                                     // .duration(4000)
+                                     // .style('stroke', "black")
+                                     // .attr('stroke-width', 5);
+
+
+                                     svg_forth.append('g')
+                                       .append("path")
+                                       .datum(data)
+                                       .attr("class", "line")
+                                       .style('stroke', "#5e8c86")
+                                       .attr("d", line_NY_NJ)
+                                       // .transition()
+                                       // .ease(d3.easeSin)
+                                       // .duration(4000)
+                                       // .style('stroke', "black")
+                                       // .attr('stroke-width', 5);
+
+
+
+                         svg_forth.append('text')
+                           .attr('y',-20)
+                           .attr('x',50)
+                           .attr('class', 'title')
+                           .text('COVID-19 Cases Comparison: US vs Top 5 States')
+
+                         svg_forth.append('text')
+                           .attr('y',-60)
+                           .attr('x',-330)
+                           .attr('class', 'title')
+                           .text('COVID-19 Cases')
+                           .style('font-size',18)
+                           .attr("transform",
+                                 "rotate(-90)")
+                           .attr('text-anchor','middle')
 
 
 
@@ -496,9 +551,7 @@
 
 
 
-
-
-
+  //********************************final_scene********************************//
 
 
                        svg_final.append("g").attr("transform", "translate(0," + height + ")")
@@ -515,86 +568,119 @@
                         svg_final.append('g').append("path")
                           .datum(data)
                           .attr("class", "line")
-                          .attr("d", line_US)
-                          .transition()
-                          .ease(d3.easeSin)
-                          .duration(4000)
                           .style('stroke', "red")
-                          .attr('stroke-width', 5);
+                          .attr("d", line_US)
+                          // .transition()
+                          // .ease(d3.easeSin)
+                          // .duration(4000)
+                          // .style('stroke', "red")
+                          // .attr('stroke-width', 5);
 
 
                         svg_final.append('g')
                           .append("path")
                           .datum(data)
                           .attr("class", "line")
-                          .attr("d", line_NY).transition()
-                          .ease(d3.easeSin)
-                          .duration(4000)
-                          .style('stroke', "green")
-                          .attr('stroke-width', 5);
+                          .style('stroke', "#7ed5de")
+                          .attr("d", line_NY)
+                          // .transition()
+                          // .ease(d3.easeSin)
+                          // .duration(4000)
+                          // .style('stroke', "green")
+                          // .attr('stroke-width', 5);
 
                           svg_final.append('g')
                             .append("path")
                             .datum(data)
                             .attr("class", "line")
-                            .attr("d", line_NJ).transition()
-                            .ease(d3.easeSin)
-                            .duration(4000)
-                            .style('stroke', "green")
-                            .attr('stroke-width', 5);
+                            .style('stroke', "#7edea1")
+                            .attr("d", line_NJ)
+                            // .transition()
+                            // .ease(d3.easeSin)
+                            // .duration(4000)
+                            // .style('stroke', "green")
+                            // .attr('stroke-width', 5);
 
                             svg_final.append('g')
                               .append("path")
                               .datum(data)
+                              .style('stroke', "#e3e843")
                               .attr("class", "line")
-                              .attr("d", line_CA).transition()
-                              .ease(d3.easeSin)
-                              .duration(4000)
-                              .style('stroke', "green")
-                              .attr('stroke-width', 5);
+                              .attr("d", line_CA)
+                              // .transition()
+                              // .ease(d3.easeSin)
+                              // .duration(4000)
+                              // .style('stroke', "green")
+                              // .attr('stroke-width', 5);
 
 
                               svg_final.append('g')
                                 .append("path")
                                 .datum(data)
                                 .attr("class", "line")
-                                .attr("d", line_TX).transition()
-                                .ease(d3.easeSin)
-                                .duration(4000)
-                                .style('stroke', "green")
-                                .attr('stroke-width', 5);
+                                .style('stroke', "#e8a643")
+                                .attr("d", line_TX)
+                                // .transition()
+                                // .ease(d3.easeSin)
+                                // .duration(4000)
+                                // .style('stroke', "green")
+                                // .attr('stroke-width', 1)
+                                // .attr('fill',"none");
 
                                 svg_final.append('g')
                                   .append("path")
                                   .datum(data)
                                   .attr("class", "line")
-                                  .attr("d", line_FL).transition()
-                                  .ease(d3.easeSin)
-                                  .duration(4000)
-                                  .style('stroke', "green")
-                                  .attr('stroke-width', 5);
+                                  .style('stroke', "#1970d4")
+                                  .attr("d", line_FL)
+                                  // .transition()
+                                  // .ease(d3.easeSin)
+                                  // .duration(4000)
+                                  // .style('stroke', "green")
+                                  // .attr('stroke-width', 1)
+                                  // .attr('fill',"none");
+
+
+
+                                svg_final.append('g')
+                                  .append("path")
+                                  .datum(data)
+                                  .attr("class", "line")
+                                  .style('stroke', "#736c72")
+                                  .attr("d", line_Top5)
+                                  // .transition()
+                                  // .ease(d3.easeSin)
+                                  // .duration(4000)
+                                  // .style('stroke', "black")
+                                  // .attr('stroke-width', 5);
 
 
                                   svg_final.append('g')
                                     .append("path")
                                     .datum(data)
                                     .attr("class", "line")
-                                    .attr("d", line_halfUS).transition()
-                                    .ease(d3.easeSin)
-                                    .duration(4000)
-                                    .style('stroke', "green")
-                                    .attr('stroke-width', 5);
+                                    .style('stroke', "#e8bc43")
+                                    .attr("d", line_TX_FL_CA)
+                                    // .transition()
+                                    // .ease(d3.easeSin)
+                                    // .duration(4000)
+                                    // .style('stroke', "black")
+                                    // .attr('stroke-width', 5);
 
 
-                                svg_final.append('g')
-                                  .append("path")
-                                  .datum(data)
-                                  .attr("class", "line")
-                                  .attr("d", line_Top5).transition()
-                                  .ease(d3.easeSin)
-                                  .duration(4000)
-                                  .style('stroke', "green")
-                                  .attr('stroke-width', 5);
+                                    svg_final.append('g')
+                                      .append("path")
+                                      .datum(data)
+                                      .attr("class", "line")
+                                      .style('stroke', "#5e8c86")
+                                      .attr("d", line_NY_NJ)
+                                      // .transition()
+                                      // .ease(d3.easeSin)
+                                      // .duration(4000)
+                                      // .style('stroke', "black")
+                                      // .attr('stroke-width', 5);
+
+
 
                         svg_final.append('text')
                           .attr('y',-20)
@@ -633,9 +719,6 @@
 
 <script>
 document.getElementById("first_scene").style.display = "block";
-// document.getElementById("second_scene").style.display = "none";
-//     document.getElementById("third_scene").style.display = "none";
-//     document.getElementById("final_scene").style.display = "none";
 function openCity(evt, cityName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
