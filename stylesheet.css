@@ -2,13 +2,15 @@
 .line {
     fill: none;
     stroke: #ffcccb;
-    stroke-width: 4;
+    stroke-width: 2;
 }
 .line2 {
     fill: none;
     stroke: lightblue;
     stroke-width: 2;
 }
+/* .line_start {} */
+
 .overlay {
   fill: none;
   pointer-events: all;
@@ -80,6 +82,3 @@ text {
   border: 1px solid #ccc;
   border-top: none;
 }
-
-
-
