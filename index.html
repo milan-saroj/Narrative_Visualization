@@ -1,204 +1,614 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
 <body>
-<meta charset="utf-8">
 
-<!-- Load d3.js -->
-<script src="https://d3js.org/d3.v4.js"></script>
-<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
-<link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+  <!-- <script type="text/javascript" src="first_scene.js"></script> -->
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
-<div id="my_dataviz"></div>
-<script>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'first_scene')">first_scene</button>
+  <button class="tablinks" onclick="openCity(event, 'second_scene')">second_scene</button>
+  <button class="tablinks" onclick="openCity(event, 'third_scene')">third_scene</button>
+  <button class="tablinks" onclick="openCity(event, 'final_scene')">final_scene</button>
 
-// set the dimensions and margins of the graph
-var margin = {top: 100, right: 30, bottom: 30, left: 250},
-    width = 1500 - margin.left - margin.right,
-    height = 800 - margin.top - margin.bottom;
-
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-
-//Read the data
-d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/master/US_cases__.csv",
-
-  // When reading the csv, I must format variables:
-  function(d){
-    return { date : d3.timeParse("%m/%d/%Y")(d.date), US_cases : d.US_cases }
-  },
-
-  // Now I can use this dataset:
-  function(data) {
-
-    // Add X axis --> it is a date format
-    var x = d3.scaleTime()
-      .domain([new Date("1/21/2020"), new Date("7/16/2020")])
-      .range([ 0, width ]);
-
-   svg.append("g").attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%m/%d")));
-
-    // Add Y axis
-    var y = d3.scaleLinear()
-      .domain([0,4000000])
-      .range([ height, 0 ]);
-
-    svg.append("g")
-      .call(d3.axisLeft(y).tickFormat(d3.format(".2s")));
-
-      var line = d3.line()
-      .x(function(d) { return x(d.date) })
-      .y(function(d) { return y(d.US_cases) })
-        .curve(d3.curveMonotoneX);
-
-      var line2 = d3.line()
-        .x(function(d) { return x(d.date) })
-        .y(function(d) { return y(d.US_death) })
-          .curve(d3.curveMonotoneX);
+</div>
 
 
-    // Add the line
-    svg.append('g').append("path")
-      .datum(data)
-      .attr("class", "line")
-      .attr("d", line)
-      .transition()
-      .ease(d3.easeSin)
-      .duration(2000)
-      .style('stroke', "red")
-      .attr('stroke-width', 5)
-      .attr('fill',"None");
-
-
-    svg.append('g')
-      .append("path")
-      .datum(data)
-      .attr("class", "line")
-      .attr("d", line2).transition()
-      .ease(d3.easeSin)
-      .duration(4000)
-      .style('stroke', "blue")
-      .attr('stroke-width', 5);
-
-    svg.append('text')
-      .attr('y',-20)
-      .attr('x',430)
-      .attr('class', 'title')
-      .text('COVID-19 Cases in USA')
-
-    svg.append('text')
-      .attr('y',-60)
-      .attr('x',-330)
-      .attr('class', 'title')
-      .text('COVID-19 Cases')
-  		.style('font-size',18)
-      .attr("transform",
-            "rotate(-90)")
-      .attr('text-anchor','middle')
-
-      const annotations = [
-    {
-    note: {
-      title:"March 13,2020",
-      label: "POTUS declare National Emergency"
-    },
-    connector: {
-      end: "dot",        // none, or arrow or dot
-      type: "line",       // Line or curve
-      points: 3,           // Number of break in the curve
-      lineType : "horizontal"
-    },
-    color: ["#69b3a2"],
-    x: x(new Date("3/13/2020")),  // Takes the pixel number to convert to number
-    y:  y(2224),
-    dy: -100,
-    dx: -120
-  },
-  {
-  note: {
-    title:"April 11,2020",
-    label: "Major disaster declaration in all 50 states(first time in US history)"
-  },
-  connector: {
-    end: "dot",         // none, or arrow or dot
-    type: "line",       // Line or curve
-    points: 3,           // Number of break in the curve
-    lineType : "horizontal"
-  },
-  color: ["#69b3a2"],
-  x: x(new Date("4/13/2020")),  // Takes the pixel number to convert to number
-  y:  y(584018),
-  dy: -100,
-  dx: 20
-},
-{
-note: {
-  title:"March 23,2020",
-  label: "Stock Market hit 3-year low"
-},
-connector: {
-  end: "dot",        // none, or arrow or dot
-  type: "line",       // Line or curve
-  points: 3,           // Number of break in the curve
-  lineType : "horizontal"
-},
-
-x: x(new Date("3/23/2020")),  // Takes the pixel number to convert to number
-y:  y(43505),
-dy: -100,
-dx: -30
-},
-{
-note: {
-  title:"May 26,2020",
-  label: "Beginning of Protest over death of George Floyd"
-},
-connector: {
-  end: "dot",        // none, or arrow or dot
-  type: "line",       // Line or curve
-  points: 3,           // Number of break in the curve
-  lineType : "horizontal"
-},
-x: x(new Date("5/26/2020")),  // Takes the pixel number to convert to number
-y:  y(1689248),
-dy: -100,
-dx: -30
-},
-{
-note: {
-  title:"May 31,2020",
-  label: "Memorial Day:Coronavirus hospitalizations rise sharply after Holiday"
-},
-connector: {
-  end: "dot",        // none, or arrow or dot
-  type: "line",       // Line or curve
-  points: 3,           // Number of break in the curve
-  lineType : "horizontal"
-},
-x: x(new Date("5/31/2020")),  // Takes the pixel number to convert to number
-y:  y(1799035),
-dy: -130,
-dx: 80
-},
+<div id="final_scene" class="tabcontent"></div>
+<div id="second_scene" class="tabcontent"></div>
+<div id="third_scene" class="tabcontent"></div>
+<div id="first_scene" class="tabcontent"></div>
 
 
 
+<script id="first_scene">
 
-    ]
+                  var margin = {top: 100, right: 30, bottom: 30, left: 250},
+                      width = 1500 - margin.left - margin.right,
+                      height = 800 - margin.top - margin.bottom;
 
-    const makeAnnotations = d3.annotation()
-         .type(d3.annotationLabel)
-         .annotations(annotations)
+                  // append the svg object to the body of the page
+                  var svg = d3.select("#first_scene")
+                    .append("svg")
+                      .attr("width", width + margin.left + margin.right)
+                      .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                      .attr("transform",
+                            "translate(" + margin.left + "," + margin.top + ")");
 
-       svg.append("g")
-         .attr("class", "annotation-group")
-         .call(makeAnnotations)
+                var svg_second = d3.select("#second_scene")
+                  .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                  .append("g")
+                    .attr("transform",
+                          "translate(" + margin.left + "," + margin.top + ")");
+
+                var svg_third = d3.select("#third_scene")
+                  .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                  .append("g")
+                    .attr("transform",
+                          "translate(" + margin.left + "," + margin.top + ")");
+
+                var svg_final = d3.select("#final_scene")
+                  .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                  .append("g")
+                    .attr("transform",
+                          "translate(" + margin.left + "," + margin.top + ")");
+
+
+                  d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/master/US_cases__.csv",
+
+
+                    function(d){
+                      return { date : d3.timeParse("%m/%d/%Y")(d.date), US_cases : d.US_cases, US_death:d.US_death, NY_cases:d.NY_cases ,
+                      NJ_cases :d.NJ_cases, Cali_cases :d.Cali_cases, Texas_cases:d.Texas_cases, Florida_cases:d.Florida_cases,
+                      tx_flo_cali:d.tx_flo_cali,ny_nj:d.ny_nj, half_US:d.half_US , case_sum:d.case_sum}
+                    },
+
+
+        function(data) {
+
+
+              var x = d3.scaleTime().domain([new Date("1/21/2020"), new Date("7/16/2020")]).range([ 0, width ]);
+              var y = d3.scaleLinear().domain([0,4000000]).range([ height, 0 ]);
+
+
+                  var line_US = d3.line()
+                    .x(function(d) { return x(d.date) })
+                    .y(function(d) { return y(d.US_cases) })
+                      .curve(d3.curveMonotoneX);
+
+
+
+                  var line_NY = d3.line()
+                    .x(function(d) { return x(d.date) })
+                    .y(function(d) { return y(d.NY_cases) })
+                      .curve(d3.curveMonotoneX);
+
+                  var line_NJ = d3.line()
+                    .x(function(d) { return x(d.date) })
+                    .y(function(d) { return y(d.NJ_cases) })
+                      .curve(d3.curveMonotoneX);
+
+
+                  var line_TX = d3.line()
+                    .x(function(d) { return x(d.date) })
+                    .y(function(d) { return y(d.Texas_cases) })
+                      .curve(d3.curveMonotoneX);
+
+
+                  var line_FL = d3.line()
+                    .x(function(d) { return x(d.date) })
+                    .y(function(d) { return y(d.Florida_cases) })
+                      .curve(d3.curveMonotoneX);
+
+
+                  var line_CA = d3.line()
+                    .x(function(d) { return x(d.date) })
+                    .y(function(d) { return y(d.Cali_cases) })
+                      .curve(d3.curveMonotoneX);
+
+                  var line_halfUS = d3.line()
+                    .x(function(d) { return x(d.date) })
+                    .y(function(d) { return y(d.half_US) })
+                      .curve(d3.curveMonotoneX);
+
+                  var line_Top5 = d3.line()
+                    .x(function(d) { return x(d.date) })
+                    .y(function(d) { return y(d.case_sum) })
+                      .curve(d3.curveMonotoneX);
+
+                  var line_NY_NJ = d3.line()
+                    .x(function(d) { return x(d.date) })
+                    .y(function(d) { return (y(d.ny_nj)) })
+                      .curve(d3.curveMonotoneX);
+
+
+                      //********************************first_scene********************************//
+
+                                  svg.append("g").attr("transform", "translate(0," + height + ")")
+                                     .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%m/%d")));
+                                   svg.append("g")
+                                     .call(d3.axisLeft(y).tickFormat(d3.format(".2s")));
+
+                                // Add the line
+                                svg.append('g').append("path")
+                                  .datum(data)
+                                  .attr("class", "line")
+                                  .attr("d", line_US)
+                                  .transition()
+                                  .ease(d3.easeSin)
+                                  .duration(2000)
+                                  .style('stroke', "red")
+                                  .attr('stroke-width', 5);
+
+
+
+                                svg.append('text')
+                                  .attr('y',-20)
+                                  .attr('x',430)
+                                  .attr('class', 'title')
+                                  .text('COVID-19 Cases in USA')
+
+                                svg.append('text')
+                                  .attr('y',-60)
+                                  .attr('x',-330)
+                                  .attr('class', 'title')
+                                  .text('COVID-19 Cases')
+                              		.style('font-size',18)
+                                  .attr("transform",
+                                        "rotate(-90)")
+                                  .attr('text-anchor','middle')
+
+                                  const annotations_US = [
+                                {
+                                note: {
+                                  title:"March 13,2020",
+                                  label: "POTUS declare National Emergency"
+                                },
+                                connector: {
+                                  end: "dot",        // none, or arrow or dot
+                                  type: "line",       // Line or curve
+                                  points: 3,           // Number of break in the curve
+                                  lineType : "horizontal"
+                                },
+                                color: ["#69b3a2"],
+                                x: x(new Date("3/13/2020")),  // Takes the pixel number to convert to number
+                                y:  y(2224),
+                                dy: -100,
+                                dx: -120
+                              },
+                              {
+                              note: {
+                                title:"April 11,2020",
+                                label: "Major disaster declaration in all 50 states(first time in US history)"
+                              },
+                              connector: {
+                                end: "dot",         // none, or arrow or dot
+                                type: "line",       // Line or curve
+                                points: 3,           // Number of break in the curve
+                                lineType : "horizontal"
+                              },
+                              color: ["#69b3a2"],
+                              x: x(new Date("4/13/2020")),  // Takes the pixel number to convert to number
+                              y:  y(584018),
+                              dy: -100,
+                              dx: 20
+                            },
+                            {
+                            note: {
+                              title:"March 23,2020",
+                              label: "Stock Market hit 3-year low"
+                            },
+                            connector: {
+                              end: "dot",        // none, or arrow or dot
+                              type: "line",       // Line or curve
+                              points: 3,           // Number of break in the curve
+                              lineType : "horizontal"
+                            },
+
+                            x: x(new Date("3/23/2020")),  // Takes the pixel number to convert to number
+                            y:  y(43505),
+                            dy: -100,
+                            dx: -30
+                            },
+                            {
+                            note: {
+                              title:"May 26,2020",
+                              label: "Beginning of Protest over death of George Floyd"
+                            },
+                            connector: {
+                              end: "dot",        // none, or arrow or dot
+                              type: "line",       // Line or curve
+                              points: 3,           // Number of break in the curve
+                              lineType : "horizontal"
+                            },
+                            x: x(new Date("5/26/2020")),  // Takes the pixel number to convert to number
+                            y:  y(1689248),
+                            dy: -100,
+                            dx: -30
+                            },
+                            {
+                            note: {
+                              title:"May 31,2020",
+                              label: "Memorial Day:Coronavirus hospitalizations rise sharply after Holiday"
+                            },
+                            connector: {
+                              end: "dot",        // none, or arrow or dot
+                              type: "line",       // Line or curve
+                              points: 3,           // Number of break in the curve
+                              lineType : "horizontal"
+                            },
+                            x: x(new Date("5/31/2020")),  // Takes the pixel number to convert to number
+                            y:  y(1799035),
+                            dy: -130,
+                            dx: 80
+                            },
+
+
+
+
+                                ]
+
+                                const makeAnnotations = d3.annotation()
+                                     .type(d3.annotationLabel)
+                                     .annotations(annotations_US)
+
+                                   svg.append("g")
+                                     .attr("class", "annotation-group")
+                                     .call(makeAnnotations)
+
+
+                                     //********************************second_scene********************************//
+
+                                     var x1 = d3.scaleTime().domain([new Date("1/21/2020"), new Date("7/16/2020")]).range([ 0, width ]);
+                                     var y1 = d3.scaleLinear().domain([0,500000]).range([ height, 0 ]);
+
+                                     var line_NY_2= d3.line()
+                                       .x(function(d) { return x1(d.date) })
+                                       .y(function(d) { return y1(d.NY_cases) })
+                                         .curve(d3.curveMonotoneX);
+
+                                     var line_NJ_2 = d3.line()
+                                       .x(function(d) { return x1(d.date) })
+                                       .y(function(d) { return y1(d.NJ_cases) })
+                                         .curve(d3.curveMonotoneX);
+
+       /*axis*/               svg_second.append("g").attr("transform", "translate(0," + height + ")")
+                                .call(d3.axisBottom(x1).tickFormat(d3.timeFormat("%m/%d")));
+                              svg_second.append("g")
+                                .call(d3.axisLeft(y1).tickFormat(d3.format(".2s")));
+
+
+     // /*line*/                     svg_second.append('g').append("path")
+     //                                   .datum(data)
+     //                                   .attr("class", "line")
+     //                                   .attr("d", line_US)
+     //                                   .transition()
+     //                                   .ease(d3.easeSin)
+     //                                   .duration(2000)
+     //                                   .style('stroke', "red")
+     //                                   .attr('stroke-width', 5);
+
+
+
+                                     svg_second.append('text')
+                                       .attr('y',-20)
+                                       .attr('x',430)
+                                       .attr('class', 'title')
+                                       .text('COVID-19 Cases in USA')
+
+                                     svg_second.append('text')
+                                       .attr('y',-60)
+                                       .attr('x',-330)
+                                       .attr('class', 'title')
+                                       .text('COVID-19 Cases')
+                                       .style('font-size',18)
+                                       .attr("transform",
+                                             "rotate(-90)")
+                                       .attr('text-anchor','middle')
+
+                                       svg_second.append('g')
+                                         .append("path")
+                                         .datum(data)
+                                         .attr("class", "line")
+                                         .attr("d", line_NY_2).transition()
+                                         .ease(d3.easeSin)
+                                         .duration(4000)
+                                         .style('stroke', "green")
+                                         .attr('stroke-width', 5);
+
+                                         svg_second.append('g')
+                                           .append("path")
+                                           .datum(data)
+                                           .attr("class", "line")
+                                           .attr("d", line_NJ_2).transition()
+                                           .ease(d3.easeSin)
+                                           .duration(4000)
+                                           .style('stroke', "green")
+                                           .attr('stroke-width', 5);
+
+
+                                           // svg_second.append('g')
+                                           //   .append("path")
+                                           //   .datum(data)
+                                           //   .attr("class", "line")
+                                           //   .attr("d", line_NY_NJ).transition()
+                                           //   .ease(d3.easeSin)
+                                           //   .duration(4000)
+                                           //   .style('stroke', "cyan")
+                                           //   .attr('stroke-width', 5);
+                                       // const makeAnnotations = d3.annotation()
+                                       //      .type(d3.annotationLabel)
+                                       //      .annotations(annotations_US)
+                                       //
+                                       //    svg_second.append("g")
+                                       //      .attr("class", "annotation-group")
+                                       //      .call(makeAnnotations)
+
+
+                                       //********************************third_scene********************************//
+
+
+                                       // var x1 = d3.scaleTime().domain([new Date("1/21/2020"), new Date("7/16/2020")]).range([ 0, width ]);
+                                       // var y1 = d3.scaleLinear().domain([0,500000]).range([ height, 0 ]);
+
+                                       var line_TX_2= d3.line()
+                                         .x(function(d) { return x1(d.date) })
+                                         .y(function(d) { return y1(d.Texas_cases) })
+                                           .curve(d3.curveMonotoneX);
+
+                                       var line_FL_2 = d3.line()
+                                         .x(function(d) { return x1(d.date) })
+                                         .y(function(d) { return y1(d.Florida_cases) })
+                                           .curve(d3.curveMonotoneX);
+
+                                           var line_CA_2 = d3.line()
+                                             .x(function(d) { return x1(d.date) })
+                                             .y(function(d) { return y1(d.Cali_cases) })
+                                               .curve(d3.curveMonotoneX);
+
+              /*axis*/               svg_third.append("g").attr("transform", "translate(0," + height + ")")
+                                      .call(d3.axisBottom(x1).tickFormat(d3.timeFormat("%m/%d")));
+                                      svg_third.append("g")
+                                      .call(d3.axisLeft(y1).tickFormat(d3.format(".2s")));
+
+
+                                      // /*line*/                     svg_second.append('g').append("path")
+                                      //                                   .datum(data)
+                                      //                                   .attr("class", "line")
+                                      //                                   .attr("d", line_US)
+                                      //                                   .transition()
+                                      //                                   .ease(d3.easeSin)
+                                      //                                   .duration(2000)
+                                      //                                   .style('stroke', "red")
+                                      //                                   .attr('stroke-width', 5);
+
+
+
+                                       svg_third.append('text')
+                                         .attr('y',-20)
+                                         .attr('x',430)
+                                         .attr('class', 'title')
+                                         .text('COVID-19 Cases in USA')
+
+                                       svg_third.append('text')
+                                         .attr('y',-60)
+                                         .attr('x',-330)
+                                         .attr('class', 'title')
+                                         .text('COVID-19 Cases')
+                                         .style('font-size',18)
+                                         .attr("transform",
+                                               "rotate(-90)")
+                                         .attr('text-anchor','middle')
+
+                                         svg_third.append('g')
+                                           .append("path")
+                                           .datum(data)
+                                           .attr("class", "line")
+                                           .attr("d", line_TX_2).transition()
+                                           .ease(d3.easeSin)
+                                           .duration(4000)
+                                           .style('stroke', "green")
+                                           .attr('stroke-width', 5);
+
+                                           svg_third.append('g')
+                                             .append("path")
+                                             .datum(data)
+                                             .attr("class", "line")
+                                             .attr("d", line_CA_2).transition()
+                                             .ease(d3.easeSin)
+                                             .duration(4000)
+                                             .style('stroke', "green")
+                                             .attr('stroke-width', 5);
+
+                                             svg_third.append('g')
+                                               .append("path")
+                                               .datum(data)
+                                               .attr("class", "line")
+                                               .attr("d", line_FL_2).transition()
+                                               .ease(d3.easeSin)
+                                               .duration(4000)
+                                               .style('stroke', "green")
+                                               .attr('stroke-width', 5);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                       svg_final.append("g").attr("transform", "translate(0," + height + ")")
+                          .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%m/%d")));
+
+
+
+                        svg_final.append("g")
+                          .call(d3.axisLeft(y).tickFormat(d3.format(".2s")));
+
+
+
+
+                        svg_final.append('g').append("path")
+                          .datum(data)
+                          .attr("class", "line")
+                          .attr("d", line_US)
+                          .transition()
+                          .ease(d3.easeSin)
+                          .duration(4000)
+                          .style('stroke', "red")
+                          .attr('stroke-width', 5);
+
+
+                        svg_final.append('g')
+                          .append("path")
+                          .datum(data)
+                          .attr("class", "line")
+                          .attr("d", line_NY).transition()
+                          .ease(d3.easeSin)
+                          .duration(4000)
+                          .style('stroke', "green")
+                          .attr('stroke-width', 5);
+
+                          svg_final.append('g')
+                            .append("path")
+                            .datum(data)
+                            .attr("class", "line")
+                            .attr("d", line_NJ).transition()
+                            .ease(d3.easeSin)
+                            .duration(4000)
+                            .style('stroke', "green")
+                            .attr('stroke-width', 5);
+
+                            svg_final.append('g')
+                              .append("path")
+                              .datum(data)
+                              .attr("class", "line")
+                              .attr("d", line_CA).transition()
+                              .ease(d3.easeSin)
+                              .duration(4000)
+                              .style('stroke', "green")
+                              .attr('stroke-width', 5);
+
+
+                              svg_final.append('g')
+                                .append("path")
+                                .datum(data)
+                                .attr("class", "line")
+                                .attr("d", line_TX).transition()
+                                .ease(d3.easeSin)
+                                .duration(4000)
+                                .style('stroke', "green")
+                                .attr('stroke-width', 5);
+
+                                svg_final.append('g')
+                                  .append("path")
+                                  .datum(data)
+                                  .attr("class", "line")
+                                  .attr("d", line_FL).transition()
+                                  .ease(d3.easeSin)
+                                  .duration(4000)
+                                  .style('stroke', "green")
+                                  .attr('stroke-width', 5);
+
+
+                                  svg_final.append('g')
+                                    .append("path")
+                                    .datum(data)
+                                    .attr("class", "line")
+                                    .attr("d", line_halfUS).transition()
+                                    .ease(d3.easeSin)
+                                    .duration(4000)
+                                    .style('stroke', "green")
+                                    .attr('stroke-width', 5);
+
+
+                                svg_final.append('g')
+                                  .append("path")
+                                  .datum(data)
+                                  .attr("class", "line")
+                                  .attr("d", line_Top5).transition()
+                                  .ease(d3.easeSin)
+                                  .duration(4000)
+                                  .style('stroke', "green")
+                                  .attr('stroke-width', 5);
+
+                        svg_final.append('text')
+                          .attr('y',-20)
+                          .attr('x',50)
+                          .attr('class', 'title')
+                          .text('COVID-19 Cases Comparison: US vs Top 5 States')
+
+                        svg_final.append('text')
+                          .attr('y',-60)
+                          .attr('x',-330)
+                          .attr('class', 'title')
+                          .text('COVID-19 Cases')
+                          .style('font-size',18)
+                          .attr("transform",
+                                "rotate(-90)")
+                          .attr('text-anchor','middle')
+
+
+
+
+
+
+
+
+
+
 })
-
 </script>
+
+
+
+
+
+
+
+
+<script>
+document.getElementById("first_scene").style.display = "block";
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+</body>
+</html>
