@@ -62,7 +62,7 @@
                     .attr("transform",
                           "translate(" + margin.left + "," + margin.top + ")");
 
-                var svg_forth = d3.select("#fourth_scene")
+                var svg_fourth = d3.select("#fourth_scene")
                   .append("svg")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
@@ -178,6 +178,15 @@
                                   .attr('class', 'title')
                                   .text('COVID-19 Cases in USA')
 
+                                  svg.append('g').attr("transform", "translate("+width+",100)").append('text')
+                                    .attr('y',-22)
+                                    .attr('x',-150)
+                                    .attr('class', 'legend_cases')
+                                    .text('Cases in USA')
+                                    .attr("transform",
+                                          "rotate(-45)")
+                                    .style('color','blue');
+
                                 svg.append('text')
                                   .attr('y',-60)
                                   .attr('x',-330)
@@ -187,6 +196,9 @@
                                   .attr("transform",
                                         "rotate(-90)")
                                   .attr('text-anchor','middle')
+
+
+
 
                                   const annotations_US = [
                                 {
@@ -350,6 +362,23 @@
                                            // .style('stroke', "green")
                                            // .attr('stroke-width', 5);
 
+                                           svg_second.append('g').attr("transform", "translate("+width+",100)").append('text')
+                                             .attr('y',20)
+                                             .attr('x',-150)
+                                             .attr('class', 'legend_cases')
+                                             .text('New York')
+                                             .attr("transform",
+                                                   "rotate(-5)")
+
+
+                                             svg_second.append('g').attr("transform", "translate("+width+",100)").append('text')
+                                               .attr('y',330)
+                                               .attr('x',-150)
+                                               .attr('class', 'legend_cases')
+                                               .text('New Jersey')
+                                               .attr("transform",
+                                                     "rotate(-2)")
+
 
                                            // svg_second.append('g')
                                            //   .append("path")
@@ -440,7 +469,7 @@
                                                .append("path")
                                                .datum(data)
                                                .attr("class", "line")
-                                               .style('stroke', "#e5eba2")
+                                               .style('stroke', "#1970d4")
                                                .attr("d", line_FL_2)
                                                // .transition()
                                                // .ease(d3.easeSin)
@@ -448,25 +477,47 @@
                                                // .style('stroke', "green")
                                                // .attr('stroke-width', 5);
 
+                                               svg_third.append('g').attr("transform", "translate("+width+",0)").append('text')
+                                                 .attr('y',250)
+                                                 .attr('x',-500)
+                                                 .attr('class', 'legend_cases')
+                                                 .text('California')
+                                                 .attr("transform",
+                                                       "rotate(-30)")
 
 
+                                                 svg_third.append('g').attr("transform", "translate("+width+",0)").append('text')
+                                                 .attr('y',275)
+                                                 .attr('x',-500)
+                                                   .attr('class', 'legend_cases')
+                                                   .text('Texas')
+                                                   .attr("transform",
+                                                         "rotate(-35)")
+
+                                                         svg_third.append('g').attr("transform", "translate("+width+",0)").append('text')
+                                                         .attr('y',330)
+                                                         .attr('x',-500)
+                                                           .attr('class', 'legend_cases')
+                                                           .text('Florida')
+                                                           .attr("transform",
+                                                                 "rotate(-35)")
 
 
                         //********************************fourth_scene********************************//
 
 
-                        svg_forth.append("g").attr("transform", "translate(0," + height + ")")
+                        svg_fourth.append("g").attr("transform", "translate(0," + height + ")")
                            .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%m/%d")));
 
 
 
-                         svg_forth.append("g")
+                         svg_fourth.append("g")
                            .call(d3.axisLeft(y).tickFormat(d3.format(".2s")));
 
 
 
 
-                         svg_forth.append('g').append("path")
+                         svg_fourth.append('g').append("path")
                            .datum(data)
                            .attr("class", "line")
                            .attr("d", line_US)
@@ -480,7 +531,7 @@
 
 
 
-                                 svg_forth.append('g')
+                                 svg_fourth.append('g')
                                    .append("path")
                                    .datum(data)
                                    .attr("class", "line")
@@ -493,7 +544,7 @@
                                    // .attr('stroke-width', 5);
 
 
-                                   svg_forth.append('g')
+                                   svg_fourth.append('g')
                                      .append("path")
                                      .datum(data)
                                      .attr("class", "line")
@@ -506,7 +557,7 @@
                                      // .attr('stroke-width', 5);
 
 
-                                     svg_forth.append('g')
+                                     svg_fourth.append('g')
                                        .append("path")
                                        .datum(data)
                                        .attr("class", "line")
@@ -520,13 +571,13 @@
 
 
 
-                         svg_forth.append('text')
+                         svg_fourth.append('text')
                            .attr('y',-20)
                            .attr('x',50)
                            .attr('class', 'title')
                            .text('COVID-19 Cases Comparison: US vs Top 5 States')
 
-                         svg_forth.append('text')
+                         svg_fourth.append('text')
                            .attr('y',-60)
                            .attr('x',-330)
                            .attr('class', 'title')
@@ -538,9 +589,39 @@
 
 
 
+                           svg_fourth.append('g').attr("transform", "translate("+width+",100)").append('text')
+                             .attr('y',-22)
+                             .attr('x',-150)
+                             .attr('class', 'legend_cases')
+                             .text('Cases in USA')
+                             .attr("transform",
+                                   "rotate(-45)")
+                             .style('color','blue');
+
+                             svg_fourth.append('g').attr("transform", "translate("+width+",0)").append('text')
+                             .attr('y',355)
+                             .attr('x',-370)
+                               .attr('class', 'legend_cases')
+                               .text('Top 5 States Combined')
+                               .attr("transform",
+                                     "rotate(-27)")
 
 
+                               svg_fourth.append('g').attr("transform", "translate("+width+",0)").append('text')
+                               .attr('y',568)
+                               .attr('x',-370)
+                                 .attr('class', 'legend_cases')
+                                 .text('NY and NJ Combined')
+                                 .attr("transform",
+                                       "rotate(-1)")
 
+                                       svg_fourth.append('g').attr("transform", "translate("+width+",0)").append('text')
+                                       .attr('y',450)
+                                       .attr('x',-380)
+                                         .attr('class', 'legend_cases')
+                                         .text('TX,CA,FL Combined')
+                                         .attr("transform",
+                                               "rotate(-25)")
 
 
 
@@ -700,13 +781,80 @@
 
 
 
+                          svg_final.append('g').attr("transform", "translate("+width+",100)").append('text')
+                            .attr('y',-22)
+                            .attr('x',-150)
+                            .attr('class', 'legend_cases')
+                            .text('Cases in USA')
+                            .attr("transform",
+                                  "rotate(-45)")
+                            .style('color','blue');
+
+                            svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
+                            .attr('y',355)
+                            .attr('x',-370)
+                              .attr('class', 'legend_cases')
+                              .text('Top 5 States Combined')
+                              .attr("transform",
+                                    "rotate(-27)")
 
 
+                              svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
+                              .attr('y',568)
+                              .attr('x',-370)
+                                .attr('class', 'legend_cases')
+                                .text('NY and NJ Combined')
+                                .attr("transform",
+                                      "rotate(-1)")
+
+                                      svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
+                                      .attr('y',450)
+                                      .attr('x',-380)
+                                        .attr('class', 'legend_cases')
+                                        .text('TX,CA,FL Combined')
+                                        .attr("transform",
+                                              "rotate(-25)")
 
 
+                                              svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
+                                              .attr('y',618)
+                                              .attr('x',-200)
+                                                .attr('class', 'legend_cases')
+                                                .text('CA')
+                                                .attr("transform",
+                                                      "rotate(-3)")
 
+                                                      svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
+                                                      .attr('y',590)
+                                                      .attr('x',-200)
+                                                        .attr('class', 'legend_cases')
+                                                        .text('NY')
+                                                        .attr("transform",
+                                                              "rotate(-3)")
 
+                                                              svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
+                                                              .attr('y',650)
+                                                              .attr('x',-200)
+                                                                .attr('class', 'legend_cases')
+                                                                .text('TX')
+                                                                .attr("transform",
+                                                                      "rotate(-3)")
 
+                                                                      svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
+                                                                      .attr('y',635)
+                                                                      .attr('x',-330)
+                                                                        .attr('class', 'legend_cases')
+                                                                        .text('FL')
+                                                                        .attr("transform",
+                                                                              "rotate(-3)")
+
+                                                                              svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
+                                                                              .attr('y',650)
+                                                                              .attr('x',-50)
+                                                                                .attr('class', 'legend_cases')
+                                                                                .text('NJ')
+                                                                                .attr("transform",
+                                                                                      "rotate(-3)")
 })
 </script>
 
