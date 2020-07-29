@@ -646,120 +646,82 @@
 
 
 
-                        svg_final.append('g').append("path")
-                          .datum(data)
-                          .attr("class", "line")
-                          .style('stroke', "red")
-                          .attr("d", line_US)
-                          // .transition()
-                          // .ease(d3.easeSin)
-                          // .duration(4000)
-                          // .style('stroke', "red")
-                          // .attr('stroke-width', 5);
+
+                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "red").attr("d", line_US)
+                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#7ed5de").attr("d", line_NY)
+                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#7edea1").attr("d", line_NJ)
+                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e3e843").attr("d", line_CA)
+                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e8a643").attr("d", line_TX)
+                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#1970d4").attr("d", line_FL)
+                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#736c72").attr("d", line_Top5)
+                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e8bc43").attr("d", line_TX_FL_CA)
+                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#5e8c86").attr("d", line_NY_NJ)
 
 
-                        svg_final.append('g')
-                          .append("path")
-                          .datum(data)
-                          .attr("class", "line")
-                          .style('stroke', "#7ed5de")
-                          .attr("d", line_NY)
-                          // .transition()
-                          // .ease(d3.easeSin)
-                          // .duration(4000)
-                          // .style('stroke', "green")
-                          // .attr('stroke-width', 5);
+            var tooltip=  svg_final.append('g').append('text').attr('y', (200)).attr('x', 500 ).attr('class', 'title').text('').style("opacity", 0).style('fill', 'grey')
 
-                          svg_final.append('g')
-                            .append("path")
-                            .datum(data)
-                            .attr("class", "line")
-                            .style('stroke', "#7edea1")
-                            .attr("d", line_NJ)
-                            // .transition()
-                            // .ease(d3.easeSin)
-                            // .duration(4000)
-                            // .style('stroke', "green")
-                            // .attr('stroke-width', 5);
-
-                            svg_final.append('g')
-                              .append("path")
-                              .datum(data)
-                              .style('stroke', "#e3e843")
-                              .attr("class", "line")
-                              .attr("d", line_CA)
-                              // .transition()
-                              // .ease(d3.easeSin)
-                              // .duration(4000)
-                              // .style('stroke', "green")
-                              // .attr('stroke-width', 5);
-
-
-                              svg_final.append('g')
-                                .append("path")
-                                .datum(data)
-                                .attr("class", "line")
-                                .style('stroke', "#e8a643")
-                                .attr("d", line_TX)
-                                // .transition()
-                                // .ease(d3.easeSin)
-                                // .duration(4000)
-                                // .style('stroke', "green")
-                                // .attr('stroke-width', 1)
-                                // .attr('fill',"none");
-
-                                svg_final.append('g')
-                                  .append("path")
-                                  .datum(data)
-                                  .attr("class", "line")
-                                  .style('stroke', "#1970d4")
-                                  .attr("d", line_FL)
-                                  // .transition()
-                                  // .ease(d3.easeSin)
-                                  // .duration(4000)
-                                  // .style('stroke', "green")
-                                  // .attr('stroke-width', 1)
-                                  // .attr('fill',"none");
+            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.US_cases) } )
+            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("US Cases:"+ d.US_cases)})
+            .on("mousemove",function(d) {tooltip.text("US Cases: "+ d.US_cases)} )
+            .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
 
-                                svg_final.append('g')
-                                  .append("path")
-                                  .datum(data)
-                                  .attr("class", "line")
-                                  .style('stroke', "#736c72")
-                                  .attr("d", line_Top5)
-                                  // .transition()
-                                  // .ease(d3.easeSin)
-                                  // .duration(4000)
-                                  // .style('stroke', "black")
-                                  // .attr('stroke-width', 5);
+            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.Texas_cases) } )
+            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("Texas:"+ d.Texas_cases)})
+            .on("mousemove",function(d) {tooltip.text("Texas:"+ d.Texas_cases)} )
+            .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
-                                  svg_final.append('g')
-                                    .append("path")
-                                    .datum(data)
-                                    .attr("class", "line")
-                                    .style('stroke', "#e8bc43")
-                                    .attr("d", line_TX_FL_CA)
-                                    // .transition()
-                                    // .ease(d3.easeSin)
-                                    // .duration(4000)
-                                    // .style('stroke', "black")
-                                    // .attr('stroke-width', 5);
+            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.Cali_cases) } )
+            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("California Cases:"+ d.Cali_cases)})
+            .on("mousemove",function(d) {tooltip.text("California Cases: "+ d.Cali_cases)} )
+            .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
-                                    svg_final.append('g')
-                                      .append("path")
-                                      .datum(data)
-                                      .attr("class", "line")
-                                      .style('stroke', "#5e8c86")
-                                      .attr("d", line_NY_NJ)
-                                      // .transition()
-                                      // .ease(d3.easeSin)
-                                      // .duration(4000)
-                                      // .style('stroke', "black")
-                                      // .attr('stroke-width', 5);
+            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.Florida_cases) } )
+            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("Florida Cases:"+ d.Florida_cases)})
+            .on("mousemove",function(d) {tooltip.text("Florida Cases: "+ d.Florida_cases)} )
+            .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
+
+
+            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.NY_cases) } )
+            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("New York Cases: "+ d.NY_cases)})
+            .on("mousemove",function(d) {tooltip.text("New York Cases: "+ d.NY_cases)} )
+            .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
+
+
+            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.NJ_cases) } )
+            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("New Jersey Cases: "+ d.NJ_cases)})
+            .on("mousemove",function(d) {tooltip.text("New Jersey Cases: "+ d.NJ_cases)} )
+            .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
+
+
+            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.case_sum) } )
+            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("Top 5 states cases:"+ d.case_sum)})
+            .on("mousemove",function(d) {tooltip.text("Top 5 states cases: "+ d.case_sum)} )
+            .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
+
+            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.ny_nj) } )
+            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("NY and NJ Combined:"+ d.ny_nj)})
+            .on("mousemove",function(d) {tooltip.text("NY and NJ Combined: "+ d.ny_nj)} )
+            .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
+
+            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.tx_flo_cali) } )
+            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("TX, FL , CA combined:"+ d.tx_flo_cali)})
+            .on("mousemove",function(d) {tooltip.text("TX, FL , CA combined: "+ d.tx_flo_cali)} )
+            .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
+
+
 
 
 
