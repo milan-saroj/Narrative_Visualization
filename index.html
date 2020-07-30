@@ -452,9 +452,9 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
 
                                        svg_third.append('text')
                                          .attr('y',-20)
-                                         .attr('x',430)
+                                         .attr('x',320)
                                          .attr('class', 'title')
-                                         .text('COVID-19 Cases in USA')
+                                         .text('Growing COVID-19 Cases in TX,FL, and CA ')
 
                                        svg_third.append('text')
                                          .attr('y',-60)
@@ -562,20 +562,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
 
 
 
-                                                                                                                            svg_second.append('text')
-                                                                                                                              .attr('y',360)
-                                                                                                                              .attr('x',600)
-                                                                                                                              .attr('class', 'title')
-                                                                                                                              .text('Curve started to flatten for both NY and NJ')
-                                                                                                                              .style('font-size',18)
-                                                                                                                                .style("fill", "#9dabab")
-                                                                                                                                svg_second.append('text')
-                                                                                                                                  .attr('y',380)
-                                                                                                                                  .attr('x',605)
-                                                                                                                                  .attr('class', 'title')
-                                                                                                                                  .text('from the first week of May')
-                                                                                                                                  .style('font-size',18)
-                                                                                                                                    .style("fill", "#9dabab")
+
 
                         //********************************fourth_scene********************************//
 
@@ -588,7 +575,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                            svg_fourth.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e8bc43").attr("d", line_TX_FL_CA)
                            svg_fourth.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#5e8c86").attr("d", line_NY_NJ)
 
-                            svg_fourth.append('text').attr('y',-20).attr('x',50).attr('class', 'title').text('COVID-19 Cases Comparison: US vs Top 5 States')
+                            svg_fourth.append('text').attr('y',-20).attr('x',150).attr('class', 'title').text('How States with top 5 cases contributing total US Cases?')
                             svg_fourth.append('text').attr('y',-60).attr('x',-330).attr('class', 'title').text('COVID-19 Cases').style('font-size',18).attr("transform","rotate(-90)").attr('text-anchor','middle')
                             svg_fourth.append('g').attr("transform", "translate("+width+",100)").append('text').attr('y',-22).attr('x',-150).attr('class', 'legend_cases').text('Cases in USA').attr("transform","rotate(-45)")
                             svg_fourth.append('g').attr("transform", "translate("+width+",0)").append('text').attr('y',355).attr('x',-370).attr('class', 'legend_cases').text('Top 5 States Combined').attr("transform","rotate(-27)")
@@ -1251,9 +1238,9 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
 
                         svg_final.append('text')
                           .attr('y',-20)
-                          .attr('x',50)
+                          .attr('x',150)
                           .attr('class', 'title')
-                          .text('COVID-19 Cases Comparison: US vs Top 5 States')
+                          .text('COVID-19 Cases Comparison: US vs  5 States with highest cases')
 
                         svg_final.append('text')
                           .attr('y',-60)
