@@ -346,11 +346,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                          .attr("class", "line")
                                          .style('stroke', "#7ed5de")
                                          .attr("d", line_NY_2)
-                                         // .transition()
-                                         // .ease(d3.easeSin)
-                                         // .duration(4000)
-                                         // .style('stroke', "green")
-                                         // .attr('stroke-width', 5);
+
 
                                          svg_second.append('g')
                                            .append("path")
@@ -358,11 +354,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                            .attr("class", "line")
                                            .style('stroke', "#7edea1")
                                            .attr("d", line_NJ_2)
-                                           // .transition()
-                                           // .ease(d3.easeSin)
-                                           // .duration(4000)
-                                           // .style('stroke', "green")
-                                           // .attr('stroke-width', 5);
+
 
                                            svg_second.append('g').attr("transform", "translate("+width+",100)").append('text')
                                              .attr('y',20)
@@ -480,11 +472,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                            .attr("class", "line")
                                            .style('stroke', "#e8a643")
                                            .attr("d", line_TX_2)
-                                           // .transition()
-                                           // .ease(d3.easeSin)
-                                           // .duration(4000)
-                                           // .style('stroke', "green")
-                                           // .attr('stroke-width', 5);
+
 
                                            svg_third.append('g')
                                              .append("path")
@@ -492,11 +480,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                              .attr("class", "line")
                                              .style('stroke', "#e3e843")
                                              .attr("d", line_CA_2)
-                                             // .transition()
-                                             // .ease(d3.easeSin)
-                                             // .duration(4000)
-                                             // .style('stroke', "green")
-                                             // .attr('stroke-width', 5);
+
 
                                              svg_third.append('g')
                                                .append("path")
@@ -504,11 +488,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                                .attr("class", "line")
                                                .style('stroke', "#1970d4")
                                                .attr("d", line_FL_2)
-                                               // .transition()
-                                               // .ease(d3.easeSin)
-                                               // .duration(4000)
-                                               // .style('stroke', "green")
-                                               // .attr('stroke-width', 5);
+
 
                                                svg_third.append('g').attr("transform", "translate("+width+",0)").append('text')
                                                  .attr('y',250)
@@ -581,132 +561,149 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                                                                .style("fill", "#9dabab")
 
 
+
+                                                                                                                            svg_second.append('text')
+                                                                                                                              .attr('y',360)
+                                                                                                                              .attr('x',600)
+                                                                                                                              .attr('class', 'title')
+                                                                                                                              .text('Curve started to flatten for both NY and NJ')
+                                                                                                                              .style('font-size',18)
+                                                                                                                                .style("fill", "#9dabab")
+                                                                                                                                svg_second.append('text')
+                                                                                                                                  .attr('y',380)
+                                                                                                                                  .attr('x',605)
+                                                                                                                                  .attr('class', 'title')
+                                                                                                                                  .text('from the first week of May')
+                                                                                                                                  .style('font-size',18)
+                                                                                                                                    .style("fill", "#9dabab")
+
                         //********************************fourth_scene********************************//
 
 
-                        svg_fourth.append("g").attr("transform", "translate(0," + height + ")")
-                           .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%m/%d")));
+                           svg_fourth.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x).tickFormat(d3.timeFormat("%m/%d")));
+                           svg_fourth.append("g").call(d3.axisLeft(y).tickFormat(d3.format(".2s")));
+
+                           svg_fourth.append('g').append("path").datum(data).attr("class", "line").attr("d", line_US).transition().ease(d3.easeSin).duration(4000).style('stroke', "red").attr('stroke-width', 5);
+                           svg_fourth.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#736c72").attr("d", line_Top5)
+                           svg_fourth.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e8bc43").attr("d", line_TX_FL_CA)
+                           svg_fourth.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#5e8c86").attr("d", line_NY_NJ)
+
+                            svg_fourth.append('text').attr('y',-20).attr('x',50).attr('class', 'title').text('COVID-19 Cases Comparison: US vs Top 5 States')
+                            svg_fourth.append('text').attr('y',-60).attr('x',-330).attr('class', 'title').text('COVID-19 Cases').style('font-size',18).attr("transform","rotate(-90)").attr('text-anchor','middle')
+                            svg_fourth.append('g').attr("transform", "translate("+width+",100)").append('text').attr('y',-22).attr('x',-150).attr('class', 'legend_cases').text('Cases in USA').attr("transform","rotate(-45)")
+                            svg_fourth.append('g').attr("transform", "translate("+width+",0)").append('text').attr('y',355).attr('x',-370).attr('class', 'legend_cases').text('Top 5 States Combined').attr("transform","rotate(-27)")
+                            svg_fourth.append('g').attr("transform", "translate("+width+",0)").append('text').attr('y',568).attr('x',-370).attr('class', 'legend_cases').text('NY and NJ Combined').attr("transform","rotate(-1)")
+                            svg_fourth.append('g').attr("transform", "translate("+width+",0)").append('text').attr('y',450).attr('x',-380).attr('class', 'legend_cases').text('TX,CA,FL Combined').attr("transform","rotate(-25)")
 
 
-
-                         svg_fourth.append("g")
-                           .call(d3.axisLeft(y).tickFormat(d3.format(".2s")));
-
-
-
-
-                         svg_fourth.append('g').append("path")
-                           .datum(data)
-                           .attr("class", "line")
-                           .attr("d", line_US)
-                           .transition()
-                           .ease(d3.easeSin)
-                           .duration(4000)
-                           .style('stroke', "red")
-                           .attr('stroke-width', 5);
+                            svg_fourth.append('text')
+                              .attr('y',460)
+                              .attr('x',100)
+                              .attr('class', 'title')
+                              .text('NY and NJ contributed the initial rise ')
+                              .style('font-size',15)
+                                .style("fill", "#9dabab")
+                                svg_fourth.append('text')
+                                .attr('y',478)
+                                .attr('x',100)
+                                  .attr('class', 'title')
+                                  .text('of US total COVID-19 cases')
+                                  .style('font-size',15)
+                                    .style("fill", "#9dabab")
 
 
+                                    svg_fourth.append('g').append('ellipse')
+                                           .style("fill", "#becccc")
+                                           .style("stroke-width", 25)
+                                           .attr("cx", 350)
+                                           .attr("cy", 600)
+                                           .attr("rx",130).attr("ry", 50).attr("opacity",0.5);
+
+                                           svg_fourth.append('g').append('line')
+                                                  .style("stroke", "#9dabab")
+                                                  .style("stroke-width", 1)
+                                                  .attr("x1", 300)
+                                                  .attr("y1", 485)
+                                                  .attr("x2", 300)
+                                                  .attr("y2", 570);
+
+                                                  svg_fourth.append('g').append('circle')
+                                                         .style("fill", "#9dabab")
+                                                         .style("stroke-width", 1)
+                                                         .attr("cx", 300)
+                                                         .attr("cy", 570)
+                                                         .attr("r", 4);
 
 
+                                                         svg_fourth.append('g').attr("transform", "translate(1150,540)").append('ellipse')
+                                                                .style("fill", "#becccc")
+                                                                .style("stroke-width", 25)
+                                                                .attr("cx", 0)
+                                                                .attr("cy", 0)
+                                                                .attr("rx",70).attr("ry",30).attr("opacity",0.5).attr("transform","rotate(-25)");
 
-                                 svg_fourth.append('g')
-                                   .append("path")
-                                   .datum(data)
-                                   .attr("class", "line")
-                                   .style('stroke', "#736c72")
-                                   .attr("d", line_Top5)
-                                   // .transition()
-                                   // .ease(d3.easeSin)
-                                   // .duration(4000)
-                                   // .style('stroke', "black")
-                                   // .attr('stroke-width', 5);
+                                                                svg_fourth.append('g').append('line')
+                                                                       .style("stroke", "#9dabab")
+                                                                       .style("stroke-width", 1)
+                                                                       .attr("x1", 1150)
+                                                                       .attr("y1", 560)
+                                                                       .attr("x2", 1150)
+                                                                       .attr("y2", 620);
 
+                                                                       svg_fourth.append('g').append('circle')
+                                                                              .style("fill", "#9dabab")
+                                                                              .style("stroke-width", 1)
+                                                                              .attr("cx", 1150)
+                                                                              .attr("cy", 560)
+                                                                              .attr("r", 4);
 
-                                   svg_fourth.append('g')
-                                     .append("path")
-                                     .datum(data)
-                                     .attr("class", "line")
-                                     .style('stroke', "#e8bc43")
-                                     .attr("d", line_TX_FL_CA)
-                                     // .transition()
-                                     // .ease(d3.easeSin)
-                                     // .duration(4000)
-                                     // .style('stroke', "black")
-                                     // .attr('stroke-width', 5);
-
-
-                                     svg_fourth.append('g')
-                                       .append("path")
-                                       .datum(data)
-                                       .attr("class", "line")
-                                       .style('stroke', "#5e8c86")
-                                       .attr("d", line_NY_NJ)
-                                       // .transition()
-                                       // .ease(d3.easeSin)
-                                       // .duration(4000)
-                                       // .style('stroke', "black")
-                                       // .attr('stroke-width', 5);
-
-
-
-                         svg_fourth.append('text')
-                           .attr('y',-20)
-                           .attr('x',50)
-                           .attr('class', 'title')
-                           .text('COVID-19 Cases Comparison: US vs Top 5 States')
-
-                         svg_fourth.append('text')
-                           .attr('y',-60)
-                           .attr('x',-330)
-                           .attr('class', 'title')
-                           .text('COVID-19 Cases')
-                           .style('font-size',18)
-                           .attr("transform",
-                                 "rotate(-90)")
-                           .attr('text-anchor','middle')
-
-
-
-                           svg_fourth.append('g').attr("transform", "translate("+width+",100)").append('text')
-                             .attr('y',-22)
-                             .attr('x',-150)
-                             .attr('class', 'legend_cases')
-                             .text('Cases in USA')
-                             .attr("transform",
-                                   "rotate(-45)")
-                             .style('color','blue');
-
-                             svg_fourth.append('g').attr("transform", "translate("+width+",0)").append('text')
-                             .attr('y',355)
-                             .attr('x',-370)
-                               .attr('class', 'legend_cases')
-                               .text('Top 5 States Combined')
-                               .attr("transform",
-                                     "rotate(-27)")
-
-
-                               svg_fourth.append('g').attr("transform", "translate("+width+",0)").append('text')
-                               .attr('y',568)
-                               .attr('x',-370)
-                                 .attr('class', 'legend_cases')
-                                 .text('NY and NJ Combined')
-                                 .attr("transform",
-                                       "rotate(-1)")
-
-                                       svg_fourth.append('g').attr("transform", "translate("+width+",0)").append('text')
-                                       .attr('y',450)
-                                       .attr('x',-380)
-                                         .attr('class', 'legend_cases')
-                                         .text('TX,CA,FL Combined')
-                                         .attr("transform",
-                                               "rotate(-25)")
+                                                                              svg_fourth.append('text')
+                                                                                .attr('y',630)
+                                                                                .attr('x',950)
+                                                                                .attr('class', 'title')
+                                                                                .text('TX,FL,CA contributing recent rise ')
+                                                                                .style('font-size',15)
+                                                                                  .style("fill", "#9dabab")
+                                                                                  svg_fourth.append('text')
+                                                                                  .attr('y',650)
+                                                                                  .attr('x',950)
+                                                                                    .attr('class', 'title')
+                                                                                    .text('of US total COVID-19 cases')
+                                                                                    .style('font-size',15)
+                                                                                      .style("fill", "#9dabab")
 
 
 
 
+                                                                                             svg_fourth.append('g').append('line')
+                                                                                                    .style("stroke", "#9dabab")
+                                                                                                    .style("stroke-width", 1)
+                                                                                                    .attr("x1", 850)
+                                                                                                    .attr("y1", 460)
+                                                                                                    .attr("x2", 950)
+                                                                                                    .attr("y2", 515);
 
+                                                                                                    svg_fourth.append('g').append('circle')
+                                                                                                           .style("fill", "#9dabab")
+                                                                                                           .style("stroke-width", 1)
+                                                                                                           .attr("cx", 950)
+                                                                                                           .attr("cy", 515)
+                                                                                                           .attr("r", 4);
 
-
+                                                                                                           svg_fourth.append('text')
+                                                                                                             .attr('y',430)
+                                                                                                             .attr('x',750)
+                                                                                                             .attr('class', 'title')
+                                                                                                             .text('TX,FL,CA,NY,NJ (Top 5 States) ')
+                                                                                                             .style('font-size',15)
+                                                                                                               .style("fill", "#9dabab")
+                                                                                                               svg_fourth.append('text')
+                                                                                                               .attr('y',450)
+                                                                                                               .attr('x',750)
+                                                                                                                 .attr('class', 'title')
+                                                                                                                 .text('contributing almost half of the Total US cases')
+                                                                                                                 .style('font-size',15)
+                                                                                                                   .style("fill", "#9dabab")
 
 
 
@@ -720,10 +717,6 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
 
                         svg_final.append("g")
                           .call(d3.axisLeft(y).tickFormat(d3.format(".2s")));
-
-
-
-
 
                             svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "red").attr("d", line_US).attr('id','USA')
                             .on("mouseover",function(d){d3.select(this).style("stroke","blue"); d3.select('#USlegend').style('font-size',25);})
@@ -764,9 +757,6 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                         NY_dot.style("opacity", newOpacity8);
                         d3.select("#NYlegend").style("opacity", newOpacity8);
 
-
-
-
                       Texas.active1 = active1;
                       NJ.active2 = active2;
                       CA.active3 = active3;
@@ -775,12 +765,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                       TXFLCA.active6 = active6;
                       NYNJ.active7 = active7,
                       USA.active8 = active8;
-
-
-
-
-
-                                                  });
+  });
 
                             svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#7ed5de").attr("d", line_NY).attr('id','NY')
                             .on("mouseover",function(d){d3.select(this).style("stroke","blue"); d3.select('#NYlegend').style('font-size',25);})
@@ -830,10 +815,6 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                             TXFLCA.active6 = active6;
                             NYNJ.active7 = active7,
                             USA.active8 = active8;
-
-
-
-
                             });
 
 
@@ -886,10 +867,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                             TXFLCA.active6 = active6;
                             NYNJ.active7 = active7,
                             USA.active8 = active8;
-
-
-
-                                                  });
+                              });
 
                             svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e3e843").attr("d", line_CA).attr('id','CA')
                             .on("mouseover",function(d){d3.select(this).style("stroke","blue"); d3.select('#CAlegend').style('font-size',25);})
@@ -941,9 +919,8 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                             NYNJ.active7 = active7,
                             USA.active8 = active8;
 
+                              });
 
-
-                                                  });
                             svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e8a643").attr("d", line_TX).attr('id','Texas')
                                        .on("mouseover",function(d){d3.select(this).style("stroke","blue"); d3.select('#TXlegend').style('font-size',25);})
                                                                 .on("mouseout",function(d){d3.select(this).style("stroke","#e8a643"); d3.select('#TXlegend').style('font-size',15);})
@@ -993,10 +970,8 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                             TXFLCA.active6 = active6;
                             NYNJ.active7 = active7,
                             USA.active8 = active8;
+                          });
 
-
-
-                                                  });
                             svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#1970d4").attr("d", line_FL).attr('id','FL')
                             .on("mouseover",function(d){d3.select(this).style("stroke","blue"); d3.select('#FLlegend').style('font-size',25);})
                                                      .on("mouseout",function(d){d3.select(this).style("stroke","#1970d4"); d3.select('#FLlegend').style('font-size',15);})
@@ -1046,10 +1021,8 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                             TXFLCA.active6 = active6;
                             NYNJ.active7 = active7,
                             USA.active8 = active8;
+                            });
 
-
-
-                                                  });
                             svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#736c72").attr("d", line_Top5).attr('id','Top5')
                             .on("mouseover",function(d){d3.select(this).style("stroke","blue"); d3.select('#Top5legend').style('font-size',20);})
                                                      .on("mouseout",function(d){d3.select(this).style("stroke","#736c72"); d3.select('#Top5legend').style('font-size',15);})
@@ -1099,10 +1072,9 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                             TXFLCA.active6 = active6;
                             NYNJ.active7 = active7,
                             USA.active8 = active8;
+                            });
 
 
-
-                                                  });
                             svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e8bc43").attr("d", line_TX_FL_CA).attr('id','TXFLCA')
                             .on("mouseover",function(d){d3.select(this).style("stroke","blue"); d3.select('#TXFLCAlegend').style('font-size',20);})
                                                      .on("mouseout",function(d){d3.select(this).style("stroke","#e8bc43"); d3.select('#TXFLCAlegend').style('font-size',15);})
@@ -1152,10 +1124,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                       FL.active6 = active6;
                       NYNJ.active7 = active7,
                       USA.active8 = active8;
-
-
-
-                                            });
+                        });
 
 
                             svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#5e8c86").attr("d", line_NY_NJ).attr('id','NYNJ')
@@ -1207,10 +1176,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                       FL.active6 = active6;
                       NYNJ.active7 = active7,
                       USA.active8 = active8;
-
-
-
-                                            });
+                        });
 
 
             var tooltip=  svg_final.append('g').append('text').attr('y', (200)).attr('x', 500 ).attr('class', 'title').text('').style("opacity", 0).style('fill', 'grey')
@@ -1355,19 +1321,24 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
 
                                                               svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
                                                               .attr('y',650)
-                                                              .attr('x',-200).attr('id','TXlegend')
+                                                              .attr('x',-200).attr('id','FLlegend')
                                                                 .attr('class', 'legend_cases')
-                                                                .text('TX')
+                                                                .text('FL')
                                                                 .attr("transform",
                                                                       "rotate(-3)")
 
                                                                       svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
                                                                       .attr('y',635)
-                                                                      .attr('x',-330).attr('id','FLlegend')
+                                                                      .attr('x',-342).attr('id','TXlegend')
                                                                         .attr('class', 'legend_cases')
-                                                                        .text('FL')
+                                                                        .text('TX')
                                                                         .attr("transform",
                                                                               "rotate(-3)")
+                                                                              // .style('fill','#2e5ed9')
+
+
+
+
 
                                                                               svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
                                                                               .attr('y',650)
@@ -1380,30 +1351,8 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
 
 
 
-
-
-
-
-
-
-
-                                                                                                                      // const makeAnnotations1 = d3.annotation()
-                                                                                                                      //      .type(d3.annotationLabel)
-                                                                                                                      //      .annotations(annotations_US)
-                                                                                                                      //
-                                                                                                                      //    svg_final.append("g")
-                                                                                                                      //      .attr("class", "annotation-group")
-                                                                                                                      //      .call(makeAnnotations1)
-                                                                                                                      //      .style("opacity",1)
 })
 </script>
-
-
-
-
-
-
-
 
 <script>
 document.getElementById("first_scene").style.display = "block";
