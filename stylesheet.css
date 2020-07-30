@@ -40,9 +40,20 @@ font-weight: bold;
   fill: none;
   stroke: steelblue;
 }
-.annotation-note-title, text.title {
-      font-weight: bold;
-    }
+.annotation_text{
+  fill: #859489;
+  font-size: 13px;
+  font-family: serif;
+
+
+}
+
+.annotation_circle{
+  fill: #859489;
+  r: 4;
+}
+
+
 .title {
   font-size: 35px;
   font-family: serif;
@@ -81,6 +92,8 @@ font-weight: bold;
   font-size: 17px;
 }
 
+
+
 /* Change background color of buttons on hover */
 .tab button:hover {
   background-color: #ddd;
@@ -97,4 +110,5 @@ font-weight: bold;
   padding: 6px 12px;
   /* border: 1px solid #ccc; */
   border-top: none;
+
 }
