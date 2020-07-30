@@ -12,11 +12,11 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
 <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'first_scene')">first_scene</button>
-  <button class="tablinks" onclick="openCity(event, 'second_scene')">second_scene</button>
-  <button class="tablinks" onclick="openCity(event, 'third_scene')">third_scene</button>
-  <button class="tablinks" onclick="openCity(event, 'fourth_scene')">forth_scene</button>
-  <button class="tablinks" onclick="openCity(event, 'final_scene')">final_scene</button>
+  <button class="tablinks" onclick="opentab(event, 'first_scene')">first_scene</button>
+  <button class="tablinks" onclick="opentab(event, 'second_scene')">second_scene</button>
+  <button class="tablinks" onclick="opentab(event, 'third_scene')">third_scene</button>
+  <button class="tablinks" onclick="opentab(event, 'fourth_scene')">forth_scene</button>
+  <button class="tablinks" onclick="opentab(event, 'final_scene')">final_scene</button>
 
 </div>
 
@@ -647,76 +647,525 @@
 
 
 
-                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "red").attr("d", line_US)
-                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#7ed5de").attr("d", line_NY)
-                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#7edea1").attr("d", line_NJ)
-                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e3e843").attr("d", line_CA)
-                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e8a643").attr("d", line_TX)
-                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#1970d4").attr("d", line_FL)
-                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#736c72").attr("d", line_Top5)
-                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e8bc43").attr("d", line_TX_FL_CA)
-                                                        svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#5e8c86").attr("d", line_NY_NJ)
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "red").attr("d", line_US).attr('id','USA').on("click",function(d){
+                              var active1   = Texas.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
+                                var active2   = NJ.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
+                                  var active3   = CA.active3? false : true, newOpacity3 = active1 ? 0 : 1;
+                                    var active4   = FL.active4 ? false : true, newOpacity4 = active1 ? 0 : 1;
+                                      var active5   = Top5.active5 ? false : true, newOpacity5 = active1 ? 0 : 1;
+                                        var active6   = TXFLCA.active6 ? false : true, newOpacity6 = active1 ? 0 : 1;
+                                          var active7   = NYNJ.active7 ? false : true, newOpacity7 = active1 ? 0 : 1;
+                                            var active8   = NY.active8 ? false : true, newOpacity8 = active1 ? 0 : 1;
+
+
+                      d3.select("#Texas").style("opacity", newOpacity1);
+                        d3.select("#TXlegend").style("opacity", newOpacity1);
+                          TX_dot.style("opacity", newOpacity1);
+                      d3.select("#NJ").style("opacity", newOpacity2);
+                        d3.select("#NJlegend").style("opacity", newOpacity3);
+                          NJ_dot.style("opacity", newOpacity2);
+                      d3.select("#CA").style("opacity", newOpacity3);
+                        d3.select("#CAlegend").style("opacity", newOpacity3);
+                          CA_dot.style("opacity", newOpacity3);
+                      d3.select("#FL").style("opacity", newOpacity4);
+                        d3.select("#FLlegend").style("opacity", newOpacity4);
+                          FL_dot.style("opacity", newOpacity4);
+                      d3.select("#Top5").style("opacity", newOpacity5);
+                        d3.select("#Top5legend").style("opacity", newOpacity5);
+                          Top5_dot.style("opacity", newOpacity5);
+                      d3.select("#TXFLCA").style("opacity", newOpacity6);
+                        d3.select("#TXFLCAlegend").style("opacity", newOpacity6);
+                          TXFLCA_dot.style("opacity", newOpacity6);
+                      d3.select("#NYNJ").style("opacity", newOpacity7);
+                        d3.select("#NYNJlegend").style("opacity", newOpacity7);
+                          NYNJ_dot.style("opacity", newOpacity7);
+                      d3.select("#NY").style("opacity", newOpacity8)
+                        NY_dot.style("opacity", newOpacity8);
+                        d3.select("#NYlegend").style("opacity", newOpacity8);
+
+
+                      Texas.active1 = active1;
+                      NJ.active2 = active2;
+                      CA.active3 = active3;
+                      FL.active4 = active4;
+                      Top5.active5 = active5;
+                      TXFLCA.active6 = active6;
+                      NYNJ.active7 = active7,
+                      USA.active8 = active8;
+
+
+
+                                                  });
+
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#7ed5de").attr("d", line_NY).attr('id','NY').on("click",function(d){
+                                    var active1   = Texas.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
+                                      var active2   = NJ.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
+                                        var active3   = CA.active3? false : true, newOpacity3 = active1 ? 0 : 1;
+                                          var active4   = FL.active4 ? false : true, newOpacity4 = active1 ? 0 : 1;
+                                            var active5   = Top5.active5 ? false : true, newOpacity5 = active1 ? 0 : 1;
+                                              var active6   = TXFLCA.active6 ? false : true, newOpacity6 = active1 ? 0 : 1;
+                                                var active7   = NYNJ.active7 ? false : true, newOpacity7 = active1 ? 0 : 1;
+                                                  var active8   = USA.active8 ? false : true, newOpacity8 = active1 ? 0 : 1;
+
+
+                            d3.select("#Texas").style("opacity", newOpacity1);
+                              d3.select("#TXlegend").style("opacity", newOpacity1);
+                                TX_dot.style("opacity", newOpacity1);
+                            d3.select("#NJ").style("opacity", newOpacity2);
+                              d3.select("#NJlegend").style("opacity", newOpacity3);
+                                NJ_dot.style("opacity", newOpacity2);
+                            d3.select("#CA").style("opacity", newOpacity3);
+                              d3.select("#CAlegend").style("opacity", newOpacity3);
+                                CA_dot.style("opacity", newOpacity3);
+                            d3.select("#FL").style("opacity", newOpacity4);
+                              d3.select("#FLlegend").style("opacity", newOpacity4);
+                                FL_dot.style("opacity", newOpacity4);
+                            d3.select("#Top5").style("opacity", newOpacity5);
+                              d3.select("#Top5legend").style("opacity", newOpacity5);
+                                Top5_dot.style("opacity", newOpacity5);
+                            d3.select("#TXFLCA").style("opacity", newOpacity6);
+                              d3.select("#TXFLCAlegend").style("opacity", newOpacity6);
+                                TXFLCA_dot.style("opacity", newOpacity6);
+                            d3.select("#NYNJ").style("opacity", newOpacity7);
+                              d3.select("#NYNJlegend").style("opacity", newOpacity7);
+                                NYNJ_dot.style("opacity", newOpacity7);
+                            d3.select("#USA").style("opacity", newOpacity8)
+                              US_dot.style("opacity", newOpacity8);
+                              d3.select("#USlegend").style("opacity", newOpacity8);
+
+
+                            Texas.active1 = active1;
+                            NJ.active2 = active2;
+                            CA.active3 = active3;
+                            FL.active4 = active4;
+                            Top5.active5 = active5;
+                            TXFLCA.active6 = active6;
+                            NYNJ.active7 = active7,
+                            USA.active8 = active8;
+
+
+
+
+                            });
+
+
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#7edea1").attr("d", line_NJ).attr('id','NJ').on("click",function(d){
+                                    var active1   = Texas.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
+                                      var active2   = NY.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
+                                        var active3   = CA.active3? false : true, newOpacity3 = active1 ? 0 : 1;
+                                          var active4   = FL.active4 ? false : true, newOpacity4 = active1 ? 0 : 1;
+                                            var active5   = Top5.active5 ? false : true, newOpacity5 = active1 ? 0 : 1;
+                                              var active6   = TXFLCA.active6 ? false : true, newOpacity6 = active1 ? 0 : 1;
+                                                var active7   = NYNJ.active7 ? false : true, newOpacity7 = active1 ? 0 : 1;
+                                                  var active8   = USA.active8 ? false : true, newOpacity8 = active1 ? 0 : 1;
+
+
+                            d3.select("#Texas").style("opacity", newOpacity1);
+                              d3.select("#TXlegend").style("opacity", newOpacity1);
+                                TX_dot.style("opacity", newOpacity1);
+                            d3.select("#NY").style("opacity", newOpacity2);
+                              d3.select("#NYlegend").style("opacity", newOpacity3);
+                                NY_dot.style("opacity", newOpacity2);
+                            d3.select("#CA").style("opacity", newOpacity3);
+                              d3.select("#CAlegend").style("opacity", newOpacity3);
+                                CA_dot.style("opacity", newOpacity3);
+                            d3.select("#FL").style("opacity", newOpacity4);
+                              d3.select("#FLlegend").style("opacity", newOpacity4);
+                                FL_dot.style("opacity", newOpacity4);
+                            d3.select("#Top5").style("opacity", newOpacity5);
+                              d3.select("#Top5legend").style("opacity", newOpacity5);
+                                Top5_dot.style("opacity", newOpacity5);
+                            d3.select("#TXFLCA").style("opacity", newOpacity6);
+                              d3.select("#TXFLCAlegend").style("opacity", newOpacity6);
+                                TXFLCA_dot.style("opacity", newOpacity6);
+                            d3.select("#NYNJ").style("opacity", newOpacity7);
+                              d3.select("#NYNJlegend").style("opacity", newOpacity7);
+                                NYNJ_dot.style("opacity", newOpacity7);
+                            d3.select("#USA").style("opacity", newOpacity8)
+                              US_dot.style("opacity", newOpacity8);
+                              d3.select("#USlegend").style("opacity", newOpacity8);
+
+
+
+                            Texas.active1 = active1;
+                            NJ.active2 = active2;
+                            CA.active3 = active3;
+                            FL.active4 = active4;
+                            Top5.active5 = active5;
+                            TXFLCA.active6 = active6;
+                            NYNJ.active7 = active7,
+                            USA.active8 = active8;
+
+
+
+                                                  });
+
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e3e843").attr("d", line_CA).attr('id','CA').on("click",function(d){
+                                    var active1   = Texas.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
+                                      var active2   = NY.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
+                                        var active3   = NJ.active3? false : true, newOpacity3 = active1 ? 0 : 1;
+                                          var active4   = FL.active4 ? false : true, newOpacity4 = active1 ? 0 : 1;
+                                            var active5   = Top5.active5 ? false : true, newOpacity5 = active1 ? 0 : 1;
+                                              var active6   = TXFLCA.active6 ? false : true, newOpacity6 = active1 ? 0 : 1;
+                                                var active7   = NYNJ.active7 ? false : true, newOpacity7 = active1 ? 0 : 1;
+                                                  var active8   = USA.active8 ? false : true, newOpacity8 = active1 ? 0 : 1;
+
+
+                            d3.select("#Texas").style("opacity", newOpacity1);
+                              d3.select("#TXlegend").style("opacity", newOpacity1);
+                                TX_dot.style("opacity", newOpacity1);
+                            d3.select("#NY").style("opacity", newOpacity2);
+                              d3.select("#NYlegend").style("opacity", newOpacity2);
+                                NY_dot.style("opacity", newOpacity2);
+                            d3.select("#NJ").style("opacity", newOpacity3);
+                              d3.select("#NJlegend").style("opacity", newOpacity3);
+                                NJ_dot.style("opacity", newOpacity3);
+                            d3.select("#FL").style("opacity", newOpacity4);
+                              d3.select("#FLlegend").style("opacity", newOpacity4);
+                                FL_dot.style("opacity", newOpacity4);
+                            d3.select("#Top5").style("opacity", newOpacity5);
+                              d3.select("#Top5legend").style("opacity", newOpacity5);
+                                Top5_dot.style("opacity", newOpacity5);
+                            d3.select("#TXFLCA").style("opacity", newOpacity6);
+                              d3.select("#TXFLCAlegend").style("opacity", newOpacity6);
+                                TXFLCA_dot.style("opacity", newOpacity6);
+                            d3.select("#NYNJ").style("opacity", newOpacity7);
+                              d3.select("#NYNJlegend").style("opacity", newOpacity7);
+                                NYNJ_dot.style("opacity", newOpacity7);
+                            d3.select("#USA").style("opacity", newOpacity8)
+                              US_dot.style("opacity", newOpacity8);
+                              d3.select("#USlegend").style("opacity", newOpacity8);
+
+
+
+                            Texas.active1 = active1;
+                            NY.active2 = active2;
+                            NJ.active3 = active3;
+                            FL.active4 = active4;
+                            Top5.active5 = active5;
+                            TXFLCA.active6 = active6;
+                            NYNJ.active7 = active7,
+                            USA.active8 = active8;
+
+
+
+                                                  });
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e8a643").attr("d", line_TX).attr('id','Texas').on("click",function(d){
+                                    var active1   = NJ.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
+                                      var active2   = NY.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
+                                        var active3   = CA.active3? false : true, newOpacity3 = active1 ? 0 : 1;
+                                          var active4   = FL.active4 ? false : true, newOpacity4 = active1 ? 0 : 1;
+                                            var active5   = Top5.active5 ? false : true, newOpacity5 = active1 ? 0 : 1;
+                                              var active6   = TXFLCA.active6 ? false : true, newOpacity6 = active1 ? 0 : 1;
+                                                var active7   = NYNJ.active7 ? false : true, newOpacity7 = active1 ? 0 : 1;
+                                                  var active8   = USA.active8 ? false : true, newOpacity8 = active1 ? 0 : 1;
+
+
+                            d3.select("#NJ").style("opacity", newOpacity1);
+                              d3.select("#NJlegend").style("opacity", newOpacity1);
+                                NJ_dot.style("opacity", newOpacity1);
+                            d3.select("#NY").style("opacity", newOpacity2);
+                              d3.select("#NYlegend").style("opacity", newOpacity3);
+                                NY_dot.style("opacity", newOpacity2);
+                            d3.select("#CA").style("opacity", newOpacity3);
+                              d3.select("#CAlegend").style("opacity", newOpacity3);
+                                CA_dot.style("opacity", newOpacity3);
+                            d3.select("#FL").style("opacity", newOpacity4);
+                              d3.select("#FLlegend").style("opacity", newOpacity4);
+                                FL_dot.style("opacity", newOpacity4);
+                            d3.select("#Top5").style("opacity", newOpacity5);
+                              d3.select("#Top5legend").style("opacity", newOpacity5);
+                                Top5_dot.style("opacity", newOpacity5);
+                            d3.select("#TXFLCA").style("opacity", newOpacity6);
+                              d3.select("#TXFLCAlegend").style("opacity", newOpacity6);
+                                TXFLCA_dot.style("opacity", newOpacity6);
+                            d3.select("#NYNJ").style("opacity", newOpacity7);
+                              d3.select("#NYNJlegend").style("opacity", newOpacity7);
+                                NYNJ_dot.style("opacity", newOpacity7);
+                            d3.select("#USA").style("opacity", newOpacity8)
+                              US_dot.style("opacity", newOpacity8);
+                              d3.select("#USlegend").style("opacity", newOpacity8);
+
+
+
+                            NJ.active1 = active1;
+                            NY.active2 = active2;
+                            CA.active3 = active3;
+                            FL.active4 = active4;
+                            Top5.active5 = active5;
+                            TXFLCA.active6 = active6;
+                            NYNJ.active7 = active7,
+                            USA.active8 = active8;
+
+
+
+                                                  });
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#1970d4").attr("d", line_FL).attr('id','FL').on("click",function(d){
+                                    var active1   = NJ.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
+                                      var active2   = NY.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
+                                        var active3   = CA.active3? false : true, newOpacity3 = active1 ? 0 : 1;
+                                          var active4   = Texas.active4 ? false : true, newOpacity4 = active1 ? 0 : 1;
+                                            var active5   = Top5.active5 ? false : true, newOpacity5 = active1 ? 0 : 1;
+                                              var active6   = TXFLCA.active6 ? false : true, newOpacity6 = active1 ? 0 : 1;
+                                                var active7   = NYNJ.active7 ? false : true, newOpacity7 = active1 ? 0 : 1;
+                                                  var active8   = USA.active8 ? false : true, newOpacity8 = active1 ? 0 : 1;
+
+
+                            d3.select("#NJ").style("opacity", newOpacity1);
+                              d3.select("#NJlegend").style("opacity", newOpacity1);
+                                NJ_dot.style("opacity", newOpacity1);
+                            d3.select("#NY").style("opacity", newOpacity2);
+                              d3.select("#NYlegend").style("opacity", newOpacity3);
+                                NY_dot.style("opacity", newOpacity2);
+                            d3.select("#CA").style("opacity", newOpacity3);
+                              d3.select("#CAlegend").style("opacity", newOpacity3);
+                                CA_dot.style("opacity", newOpacity3);
+                            d3.select("#Texas").style("opacity", newOpacity4);
+                              d3.select("#TXlegend").style("opacity", newOpacity4);
+                                TX_dot.style("opacity", newOpacity4);
+                            d3.select("#Top5").style("opacity", newOpacity5);
+                              d3.select("#Top5legend").style("opacity", newOpacity5);
+                                Top5_dot.style("opacity", newOpacity5);
+                            d3.select("#TXFLCA").style("opacity", newOpacity6);
+                              d3.select("#TXFLCAlegend").style("opacity", newOpacity6);
+                                TXFLCA_dot.style("opacity", newOpacity6);
+                            d3.select("#NYNJ").style("opacity", newOpacity7);
+                              d3.select("#NYNJlegend").style("opacity", newOpacity7);
+                                NYNJ_dot.style("opacity", newOpacity7);
+                            d3.select("#USA").style("opacity", newOpacity8)
+                              US_dot.style("opacity", newOpacity8);
+                              d3.select("#USlegend").style("opacity", newOpacity8);
+
+
+
+                            NJ.active1 = active1;
+                            NY.active2 = active2;
+                            CA.active3 = active3;
+                            Texas.active4 = active4;
+                            Top5.active5 = active5;
+                            TXFLCA.active6 = active6;
+                            NYNJ.active7 = active7,
+                            USA.active8 = active8;
+
+
+
+                                                  });
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#736c72").attr("d", line_Top5).attr('id','Top5').on("click",function(d){
+                                    var active1   = NJ.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
+                                      var active2   = NY.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
+                                        var active3   = CA.active3? false : true, newOpacity3 = active1 ? 0 : 1;
+                                          var active4   = Texas.active4 ? false : true, newOpacity4 = active1 ? 0 : 1;
+                                            var active5   = FL.active5 ? false : true, newOpacity5 = active1 ? 0 : 1;
+                                              var active6   = TXFLCA.active6 ? false : true, newOpacity6 = active1 ? 0 : 1;
+                                                var active7   = NYNJ.active7 ? false : true, newOpacity7 = active1 ? 0 : 1;
+                                                  var active8   = USA.active8 ? false : true, newOpacity8 = active1 ? 0 : 1;
+
+
+                            d3.select("#NJ").style("opacity", newOpacity1);
+                              d3.select("#NJlegend").style("opacity", newOpacity1);
+                                NJ_dot.style("opacity", newOpacity1);
+                            d3.select("#NY").style("opacity", newOpacity2);
+                              d3.select("#NYlegend").style("opacity", newOpacity3);
+                                NY_dot.style("opacity", newOpacity2);
+                            d3.select("#CA").style("opacity", newOpacity3);
+                              d3.select("#CAlegend").style("opacity", newOpacity3);
+                                CA_dot.style("opacity", newOpacity3);
+                            d3.select("#Texas").style("opacity", newOpacity4);
+                              d3.select("#TXlegend").style("opacity", newOpacity4);
+                                TX_dot.style("opacity", newOpacity4);
+                            d3.select("#FL").style("opacity", newOpacity5);
+                              d3.select("#FLlegend").style("opacity", newOpacity5);
+                                FL_dot.style("opacity", newOpacity5);
+                            d3.select("#TXFLCA").style("opacity", newOpacity6);
+                              d3.select("#TXFLCAlegend").style("opacity", newOpacity6);
+                                TXFLCA_dot.style("opacity", newOpacity6);
+                            d3.select("#NYNJ").style("opacity", newOpacity7);
+                              d3.select("#NYNJlegend").style("opacity", newOpacity7);
+                                NYNJ_dot.style("opacity", newOpacity7);
+                            d3.select("#USA").style("opacity", newOpacity8)
+                              US_dot.style("opacity", newOpacity8);
+                              d3.select("#USlegend").style("opacity", newOpacity8);
+
+
+
+                            NJ.active1 = active1;
+                            NY.active2 = active2;
+                            CA.active3 = active3;
+                            Texas.active4 = active4;
+                            FL.active5 = active5;
+                            TXFLCA.active6 = active6;
+                            NYNJ.active7 = active7,
+                            USA.active8 = active8;
+
+
+
+                                                  });
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e8bc43").attr("d", line_TX_FL_CA).attr('id','TXFLCA').on("click",function(d){
+                              var active1   = NJ.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
+                                var active2   = NY.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
+                                  var active3   = CA.active3? false : true, newOpacity3 = active1 ? 0 : 1;
+                                    var active4   = Texas.active4 ? false : true, newOpacity4 = active1 ? 0 : 1;
+                                      var active5   = Top5.active5 ? false : true, newOpacity5 = active1 ? 0 : 1;
+                                        var active6   = FL.active6 ? false : true, newOpacity6 = active1 ? 0 : 1;
+                                          var active7   = NYNJ.active7 ? false : true, newOpacity7 = active1 ? 0 : 1;
+                                            var active8   = USA.active8 ? false : true, newOpacity8 = active1 ? 0 : 1;
+
+
+                      d3.select("#NJ").style("opacity", newOpacity1);
+                        d3.select("#NJlegend").style("opacity", newOpacity1);
+                          NJ_dot.style("opacity", newOpacity1);
+                      d3.select("#NY").style("opacity", newOpacity2);
+                        d3.select("#NYlegend").style("opacity", newOpacity3);
+                          NY_dot.style("opacity", newOpacity2);
+                      d3.select("#CA").style("opacity", newOpacity3);
+                        d3.select("#CAlegend").style("opacity", newOpacity3);
+                          CA_dot.style("opacity", newOpacity3);
+                      d3.select("#Texas").style("opacity", newOpacity4);
+                        d3.select("#TXlegend").style("opacity", newOpacity4);
+                          TX_dot.style("opacity", newOpacity4);
+                      d3.select("#Top5").style("opacity", newOpacity5);
+                        d3.select("#Top5legend").style("opacity", newOpacity5);
+                          Top5_dot.style("opacity", newOpacity5);
+                      d3.select("#FL").style("opacity", newOpacity6);
+                        d3.select("#FLlegend").style("opacity", newOpacity6);
+                          FL_dot.style("opacity", newOpacity6);
+                      d3.select("#NYNJ").style("opacity", newOpacity7);
+                        d3.select("#NYNJlegend").style("opacity", newOpacity7);
+                          NYNJ_dot.style("opacity", newOpacity7);
+                      d3.select("#USA").style("opacity", newOpacity8)
+                        US_dot.style("opacity", newOpacity8);
+                        d3.select("#USlegend").style("opacity", newOpacity8);
+
+
+
+                      NJ.active1 = active1;
+                      NY.active2 = active2;
+                      CA.active3 = active3;
+                      Texas.active4 = active4;
+                      Top5.active5 = active5;
+                      FL.active6 = active6;
+                      NYNJ.active7 = active7,
+                      USA.active8 = active8;
+
+
+
+                                            });
+
+
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#5e8c86").attr("d", line_NY_NJ).attr('id','NYNJ').on("click",function(d){
+                                var active1   = NJ.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
+                                var active2   = NY.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
+                                  var active3   = CA.active3? false : true, newOpacity3 = active1 ? 0 : 1;
+                                    var active4   = Texas.active4 ? false : true, newOpacity4 = active1 ? 0 : 1;
+                                      var active5   = Top5.active5 ? false : true, newOpacity5 = active1 ? 0 : 1;
+                                        var active6   = TXFLCA.active6 ? false : true, newOpacity6 = active1 ? 0 : 1;
+                                          var active7   = FL.active7 ? false : true, newOpacity7 = active1 ? 0 : 1;
+                                            var active8   = USA.active8 ? false : true, newOpacity8 = active1 ? 0 : 1;
+
+
+                      d3.select("#NJ").style("opacity", newOpacity1);
+                        d3.select("#NJlegend").style("opacity", newOpacity1);
+                          NJ_dot.style("opacity", newOpacity1);
+                      d3.select("#NY").style("opacity", newOpacity2);
+                        d3.select("#NYlegend").style("opacity", newOpacity3);
+                          NY_dot.style("opacity", newOpacity2);
+                      d3.select("#CA").style("opacity", newOpacity3);
+                        d3.select("#CAlegend").style("opacity", newOpacity3);
+                          CA_dot.style("opacity", newOpacity3);
+                      d3.select("#Texas").style("opacity", newOpacity4);
+                        d3.select("#TXlegend").style("opacity", newOpacity4);
+                          TX_dot.style("opacity", newOpacity4);
+                      d3.select("#Top5").style("opacity", newOpacity5);
+                        d3.select("#Top5legend").style("opacity", newOpacity5);
+                          Top5_dot.style("opacity", newOpacity5);
+                      d3.select("#TXFLCA").style("opacity", newOpacity6);
+                        d3.select("#TXFLCAlegend").style("opacity", newOpacity6);
+                          TXFLCA_dot.style("opacity", newOpacity6);
+                      d3.select("#FL").style("opacity", newOpacity7);
+                        d3.select("#FLlegend").style("opacity", newOpacity7);
+                          FL_dot.style("opacity", newOpacity7);
+                      d3.select("#USA").style("opacity", newOpacity8)
+                        US_dot.style("opacity", newOpacity8);
+                        d3.select("#USlegend").style("opacity", newOpacity8);
+
+
+
+                      NJ.active1 = active1;
+                      NY.active2 = active2;
+                      CA.active3 = active3;
+                      Texas.active4 = active4;
+                      Top5.active5 = active5;
+                      FL.active6 = active6;
+                      NYNJ.active7 = active7,
+                      USA.active8 = active8;
+
+
+
+                                            });
 
 
             var tooltip=  svg_final.append('g').append('text').attr('y', (200)).attr('x', 500 ).attr('class', 'title').text('').style("opacity", 0).style('fill', 'grey')
 
-            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.US_cases) } )
-            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            var US_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.US_cases) } )
+            .attr("r",2).style("fill", "yellow").style("opacity", 1)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("US Cases:"+ d.US_cases)})
             .on("mousemove",function(d) {tooltip.text("US Cases: "+ d.US_cases)} )
-            .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
+            .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)})
 
 
 
-            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.Texas_cases) } )
-            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+
+           var TX_dot=  svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.Texas_cases) } )
+            .attr("r",2).style("fill", "black").style("opacity", 1)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("Texas:"+ d.Texas_cases)})
             .on("mousemove",function(d) {tooltip.text("Texas:"+ d.Texas_cases)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
-            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.Cali_cases) } )
-            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            var CA_dot = svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.Cali_cases) } )
+            .attr("r",2).style("fill", "red").style("opacity", 0.5)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("California Cases:"+ d.Cali_cases)})
             .on("mousemove",function(d) {tooltip.text("California Cases: "+ d.Cali_cases)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
-            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.Florida_cases) } )
-            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            var FL_dot = svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.Florida_cases) } )
+            .attr("r",2).style("fill", "white").style("opacity", 1)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("Florida Cases:"+ d.Florida_cases)})
             .on("mousemove",function(d) {tooltip.text("Florida Cases: "+ d.Florida_cases)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
-            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.NY_cases) } )
-            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            var NY_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.NY_cases) } )
+            .attr("r",2).style("fill", "red").style("opacity", 0.5)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("New York Cases: "+ d.NY_cases)})
             .on("mousemove",function(d) {tooltip.text("New York Cases: "+ d.NY_cases)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
-            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.NJ_cases) } )
-            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            var NJ_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.NJ_cases) } )
+            .attr("r",2).style("fill", "red").style("opacity", 1)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("New Jersey Cases: "+ d.NJ_cases)})
             .on("mousemove",function(d) {tooltip.text("New Jersey Cases: "+ d.NJ_cases)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
-            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.case_sum) } )
-            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            var Top5_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.case_sum) } )
+            .attr("r",2).style("fill", "white").style("opacity", 1)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("Top 5 states cases:"+ d.case_sum)})
             .on("mousemove",function(d) {tooltip.text("Top 5 states cases: "+ d.case_sum)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
-            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.ny_nj) } )
-            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            var NYNJ_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.ny_nj) } )
+            .attr("r",2).style("fill", "red").style("opacity", 0.5)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("NY and NJ Combined:"+ d.ny_nj)})
             .on("mousemove",function(d) {tooltip.text("NY and NJ Combined: "+ d.ny_nj)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
-            svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.tx_flo_cali) } )
-            .attr("r",4).style("fill", "red").style("opacity", 0.0)
+            var TXFLCA_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.tx_flo_cali) } )
+            .attr("r",2)
+            // .attr("class", "dotstates")
+            .style("fill", "blue").style("opacity", 0.5)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("TX, FL , CA combined:"+ d.tx_flo_cali)})
             .on("mousemove",function(d) {tooltip.text("TX, FL , CA combined: "+ d.tx_flo_cali)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
@@ -746,6 +1195,7 @@
                           svg_final.append('g').attr("transform", "translate("+width+",100)").append('text')
                             .attr('y',-22)
                             .attr('x',-150)
+                            .attr('id','USlegend')
                             .attr('class', 'legend_cases')
                             .text('Cases in USA')
                             .attr("transform",
@@ -754,7 +1204,7 @@
 
                             svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
                             .attr('y',355)
-                            .attr('x',-370)
+                            .attr('x',-370).attr('id','Top5legend')
                               .attr('class', 'legend_cases')
                               .text('Top 5 States Combined')
                               .attr("transform",
@@ -763,7 +1213,7 @@
 
                               svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
                               .attr('y',568)
-                              .attr('x',-370)
+                              .attr('x',-370).attr('id','NYNJlegend')
                                 .attr('class', 'legend_cases')
                                 .text('NY and NJ Combined')
                                 .attr("transform",
@@ -771,7 +1221,7 @@
 
                                       svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
                                       .attr('y',450)
-                                      .attr('x',-380)
+                                      .attr('x',-380).attr('id','TXFLCAlegend')
                                         .attr('class', 'legend_cases')
                                         .text('TX,CA,FL Combined')
                                         .attr("transform",
@@ -780,7 +1230,7 @@
 
                                               svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
                                               .attr('y',618)
-                                              .attr('x',-200)
+                                              .attr('x',-200).attr('id','CAlegend')
                                                 .attr('class', 'legend_cases')
                                                 .text('CA')
                                                 .attr("transform",
@@ -788,7 +1238,7 @@
 
                                                       svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
                                                       .attr('y',590)
-                                                      .attr('x',-200)
+                                                      .attr('x',-200).attr('id','NYlegend')
                                                         .attr('class', 'legend_cases')
                                                         .text('NY')
                                                         .attr("transform",
@@ -796,7 +1246,7 @@
 
                                                               svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
                                                               .attr('y',650)
-                                                              .attr('x',-200)
+                                                              .attr('x',-200).attr('id','TXlegend')
                                                                 .attr('class', 'legend_cases')
                                                                 .text('TX')
                                                                 .attr("transform",
@@ -804,7 +1254,7 @@
 
                                                                       svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
                                                                       .attr('y',635)
-                                                                      .attr('x',-330)
+                                                                      .attr('x',-330).attr('id','FLlegend')
                                                                         .attr('class', 'legend_cases')
                                                                         .text('FL')
                                                                         .attr("transform",
@@ -812,7 +1262,7 @@
 
                                                                               svg_final.append('g').attr("transform", "translate("+width+",0)").append('text')
                                                                               .attr('y',650)
-                                                                              .attr('x',-50)
+                                                                              .attr('x',-50).attr('id','NJlegend')
                                                                                 .attr('class', 'legend_cases')
                                                                                 .text('NJ')
                                                                                 .attr("transform",
@@ -829,7 +1279,7 @@
 
 <script>
 document.getElementById("first_scene").style.display = "block";
-function openCity(evt, cityName) {
+function opentab(evt, tabname) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
@@ -839,7 +1289,7 @@ function openCity(evt, cityName) {
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
-  document.getElementById(cityName).style.display = "block";
+  document.getElementById(tabname).style.display = "block";
   evt.currentTarget.className += " active";
 }
 </script>
