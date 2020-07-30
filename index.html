@@ -1267,6 +1267,16 @@
                                                                                 .text('NJ')
                                                                                 .attr("transform",
                                                                                       "rotate(-3)")
+                    
+                    
+                                                                                                                    const makeAnnotations1 = d3.annotation()
+                                                                                                                           .type(d3.annotationLabel)
+                                                                                                                           .annotations(annotations_US)
+
+                                                                                                                         svg_final.append("g")
+                                                                                                                           .attr("class", "annotation-group")
+                                                                                                                           .call(makeAnnotations1)
+                                                                                                                           .style("opacity",1)
 })
 </script>
 
