@@ -1305,15 +1305,17 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                          // + ', ' + year;
                       }
 
-
+                      function numberformat(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 
             var tooltip=  svg_final.append('g').append('text').attr('y', 200).attr('x', 300 ).attr('class', 'title').text('').style("opacity", 0).style('fill', 'red')
 
             var US_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.US_cases) } )
             .attr("r",3).style("fill", "black").style("opacity", 0.5)
-            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("US Cases: "+ d.US_cases+" on "+formatDate(d.date))})
-            .on("mousemove",function(d) {tooltip.text("US Cases: "+ d.US_cases+" on "+formatDate(d.date))})
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("US Cases: "+ numberformat(d.US_cases)+" on "+formatDate(d.date))})
+            .on("mousemove",function(d) {tooltip.text("US Cases: "+ numberformat(d.US_cases)+" on "+formatDate(d.date))})
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)})
 
 
@@ -1321,57 +1323,57 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
 
            var TX_dot=  svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.Texas_cases) } )
             .attr("r",3).style("fill", "black").style("opacity", 0.5)
-            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("Texas: "+ d.Texas_cases+" on "+formatDate(d.date))})
-            .on("mousemove",function(d) {tooltip.text("Texas: "+ d.Texas_cases+" on "+formatDate(d.date))} )
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("Texas: "+ numberformat(d.Texas_cases)+" on "+formatDate(d.date))})
+            .on("mousemove",function(d) {tooltip.text("Texas: "+ numberformat(d.Texas_cases)+" on "+formatDate(d.date))} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
             var CA_dot = svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.Cali_cases) } )
             .attr("r",3).style("fill", "black").style("opacity", 0.5)
-            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("California Cases: "+ d.Cali_cases+" on "+formatDate(d.date))})
-            .on("mousemove",function(d) {tooltip.text("California Cases: "+ d.Cali_cases+" on "+formatDate(d.date))} )
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("California Cases: "+ numberformat(d.Cali_cases)+" on "+formatDate(d.date))})
+            .on("mousemove",function(d) {tooltip.text("California Cases: "+ numberformat(d.Cali_cases)+" on "+formatDate(d.date))} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
             var FL_dot = svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.Florida_cases) } )
             .attr("r",3).style("fill", "black").style("opacity", 0.5)
-            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("Florida Cases: "+ d.Florida_cases+" on "+formatDate(d.date))})
-            .on("mousemove",function(d) {tooltip.text("Florida Cases: "+ d.Florida_cases+" on "+formatDate(d.date))} )
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("Florida Cases: "+ numberformat(d.Florida_cases)+" on "+formatDate(d.date))})
+            .on("mousemove",function(d) {tooltip.text("Florida Cases: "+ numberformat(d.Florida_cases)+" on "+formatDate(d.date))} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
             var NY_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.NY_cases) } )
             .attr("r",3).style("fill", "black").style("opacity", 0.5)
-            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("New York Cases: "+ d.NY_cases+" on "+formatDate(d.date))})
-            .on("mousemove",function(d) {tooltip.text("New York Cases: "+ d.NY_cases+" on "+formatDate(d.date))} )
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("New York Cases: "+ numberformat(d.NY_cases)+" on "+formatDate(d.date))})
+            .on("mousemove",function(d) {tooltip.text("New York Cases: "+ numberformat(d.NY_cases)+" on "+formatDate(d.date))} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
             var NJ_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.NJ_cases) } )
             .attr("r",3).style("fill", "black").style("opacity", 0.5)
-            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("New Jersey Cases: "+ d.NJ_cases+" on "+formatDate(d.date))})
-            .on("mousemove",function(d) {tooltip.text("New Jersey Cases: "+ d.NJ_cases+" on "+formatDate(d.date))} )
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("New Jersey Cases: "+ numberformat(d.NJ_cases)+" on "+formatDate(d.date))})
+            .on("mousemove",function(d) {tooltip.text("New Jersey Cases: "+ numberformat(d.NJ_cases)+" on "+formatDate(d.date))} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
             var Top5_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.case_sum) } )
             .attr("r",3).style("fill", "black").style("opacity", 0.5)
-            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("Top 5 states cases: "+ d.case_sum+" on "+formatDate(d.date))})
-            .on("mousemove",function(d) {tooltip.text("Top 5 states cases: "+ d.case_sum+" on "+formatDate(d.date))} )
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("Top 5 states cases: "+ numberformat(d.case_sum)+" on "+formatDate(d.date))})
+            .on("mousemove",function(d) {tooltip.text("Top 5 states cases: "+ numberformat(d.case_sum)+" on "+formatDate(d.date))} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
             var NYNJ_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.ny_nj) } )
             .attr("r",3).style("fill", "black").style("opacity", 0.5)
-            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("NY and NJ Combined: "+ d.ny_nj+" on "+formatDate(d.date))})
-            .on("mousemove",function(d) {tooltip.text("NY and NJ Combined: "+ d.ny_nj+" on "+formatDate(d.date))} )
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("NY and NJ Combined: "+ numberformat(d.ny_nj)+" on "+formatDate(d.date))})
+            .on("mousemove",function(d) {tooltip.text("NY and NJ Combined: "+ numberformat(d.ny_nj)+" on "+formatDate(d.date))} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
             var TXFLCA_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.tx_flo_cali) } )
             .attr("r",3)
             // .attr("class", "dotstates")
             .style("fill", "black").style("opacity", 0.5)
-            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("TX, FL , CA combined: "+ d.tx_flo_cali+" on "+formatDate(d.date))})
-            .on("mousemove",function(d) {tooltip.text("TX, FL , CA combined: "+ d.tx_flo_cali+" on "+formatDate(d.date))} )
+            .on("mouseover",function(d) {tooltip.style("opacity", 1).text("TX, FL , CA combined: "+ numberformat(d.tx_flo_cali)+" on "+formatDate(d.date))})
+            .on("mousemove",function(d) {tooltip.text("TX, FL , CA combined: "+ numberformat(d.tx_flo_cali)+" on "+formatDate(d.date))} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
