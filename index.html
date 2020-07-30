@@ -12,11 +12,11 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
 <div class="tab">
-  <button class="tablinks" onclick="opentab(event, 'first_scene')">first_scene</button>
-  <button class="tablinks" onclick="opentab(event, 'second_scene')">second_scene</button>
-  <button class="tablinks" onclick="opentab(event, 'third_scene')">third_scene</button>
-  <button class="tablinks" onclick="opentab(event, 'fourth_scene')">forth_scene</button>
-  <button class="tablinks" onclick="opentab(event, 'final_scene')">final_scene</button>
+  <button class="tablinks" onclick="opentab(event, 'first_scene')">1</button>
+  <button class="tablinks" onclick="opentab(event, 'second_scene')">2</button>
+  <button class="tablinks" onclick="opentab(event, 'third_scene')">3</button>
+  <button class="tablinks" onclick="opentab(event, 'fourth_scene')">4</button>
+  <button class="tablinks" onclick="opentab(event, 'final_scene')">5</button>
 
 </div>
 
@@ -78,8 +78,9 @@
                     .attr("transform",
                           "translate(" + margin.left + "," + margin.top + ")");
 
+d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/master/US_cases__latest_after_march_truncate.csv",
 
-                  d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/master/US_cases__latest_after_march.csv",
+                  // d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/master/US_cases__latest_after_march.csv",
 
 
                     function(d){
@@ -166,7 +167,7 @@
                                   .attr("d", line_US)
                                   .transition()
                                   .ease(d3.easeSin)
-                                  .duration(2000)
+                                  .duration(4000)
                                   .style('stroke', "red")
                                   .attr('stroke-width', 5);
 
@@ -200,7 +201,7 @@
 
 
 
-                                  const annotations_US = [
+                                const annotations_US = [
                                 {
                                 note: {
                                   title:"March 13,2020",
@@ -215,8 +216,8 @@
                                 color: ["#69b3a2"],
                                 x: x(new Date("3/13/2020")),  // Takes the pixel number to convert to number
                                 y:  y(2224),
-                                dy: -100,
-                                dx: -120
+                                dy: -150,
+                                dx: 35
                               },
                               {
                               note: {
@@ -250,7 +251,7 @@
                             x: x(new Date("3/23/2020")),  // Takes the pixel number to convert to number
                             y:  y(43505),
                             dy: -100,
-                            dx: -30
+                            dx: 60
                             },
                             {
                             note: {
@@ -295,8 +296,9 @@
                                      .annotations(annotations_US)
 
                                    svg.append("g")
-                                     .attr("class", "annotation-group")
+                                     // .attr("class", "annotation-group")
                                      .call(makeAnnotations)
+
 
 
                                      //********************************second_scene********************************//
@@ -324,9 +326,9 @@
 
                                      svg_second.append('text')
                                        .attr('y',-20)
-                                       .attr('x',430)
+                                       .attr('x',330)
                                        .attr('class', 'title')
-                                       .text('COVID-19 Cases in USA')
+                                       .text('COVID-19 Cases in New York and New Jersey')
 
                                      svg_second.append('text')
                                        .attr('y',-60)
@@ -380,22 +382,53 @@
                                                      "rotate(-2)")
 
 
-                                           // svg_second.append('g')
-                                           //   .append("path")
-                                           //   .datum(data)
-                                           //   .attr("class", "line")
-                                           //   .attr("d", line_NY_NJ).transition()
-                                           //   .ease(d3.easeSin)
-                                           //   .duration(4000)
-                                           //   .style('stroke', "cyan")
-                                           //   .attr('stroke-width', 5);
-                                       // const makeAnnotations = d3.annotation()
-                                       //      .type(d3.annotationLabel)
-                                       //      .annotations(annotations_US)
-                                       //
-                                       //    svg_second.append("g")
-                                       //      .attr("class", "annotation-group")
-                                       //      .call(makeAnnotations)
+                                       svg_second.append('g').append('line')
+                                              .style("stroke", "#9dabab")
+                                              .style("stroke-width", 1)
+                                              .attr("x1", 500)
+                                              .attr("y1", 246)
+                                              .attr("x2", 600)
+                                              .attr("y2", 340);
+
+                                              svg_second.append('g').append('line')
+                                                     .style("stroke", "#9dabab")
+                                                     .style("stroke-width", 1)
+                                                     .attr("x1", 500)
+                                                     .attr("y1", 505)
+                                                     .attr("x2", 600)
+                                                     .attr("y2", 370);
+
+
+
+                                          svg_second.append('g').append('circle')
+                                                 .style("fill", "#9dabab")
+                                                 .style("stroke-width", 1)
+                                                 .attr("cx", 500)
+                                                 .attr("cy", 246)
+                                                 .attr("r", 4);
+                                                 svg_second.append('g').append('circle')
+                                                        .style("fill", "#9dabab")
+                                                        .style("stroke-width", 1)
+                                                        .attr("cx", 500)
+                                                        .attr("cy", 505)
+                                                        .attr("r", 4);
+
+
+                                             svg_second.append('text')
+                                               .attr('y',360)
+                                               .attr('x',600)
+                                               .attr('class', 'title')
+                                               .text('Curve started to flatten for both NY and NJ')
+                                               .style('font-size',18)
+                                                 .style("fill", "#9dabab")
+                                                 svg_second.append('text')
+                                                   .attr('y',380)
+                                                   .attr('x',605)
+                                                   .attr('class', 'title')
+                                                   .text('from the first week of May')
+                                                   .style('font-size',18)
+                                                     .style("fill", "#9dabab")
+
 
 
                                        //********************************third_scene********************************//
@@ -501,6 +534,51 @@
                                                            .text('Florida')
                                                            .attr("transform",
                                                                  "rotate(-35)")
+
+
+
+
+                                                                        svg_third.append('g').append('line')
+                                                                               .style("stroke", "#9dabab")
+                                                                               .style("stroke-width", 1)
+                                                                               .attr("x1", 880)
+                                                                               .attr("y1", 460)
+                                                                               .attr("x2", 800)
+                                                                               .attr("y2", 380);
+
+
+
+                                                                    svg_third.append('g').append('ellipse')
+                                                                           .style("fill", "#becccc")
+                                                                           .style("stroke-width", 25)
+                                                                           .attr("cx", 900)
+                                                                           .attr("cy", 520)
+                                                                           .attr("rx", 50).attr("ry", 80).attr("opacity",0.5);
+
+
+                                                                           svg_third.append('g').append('circle')
+                                                                                  .style("fill", "#9dabab")
+                                                                                  .style("stroke-width", 1)
+                                                                                  .attr("cx", 880)
+                                                                                  .attr("cy", 460)
+                                                                                  .attr("r", 4);
+
+
+                                                                       svg_third.append('text')
+                                                                         .attr('y',360)
+                                                                         .attr('x',600)
+                                                                         .attr('class', 'title')
+                                                                         .text('Curve started to grow exponentially for TX, CA, FL')
+                                                                         .style('font-size',18)
+                                                                           .style("fill", "#9dabab")
+
+                                                                           svg_third.append('text')
+                                                                             .attr('y',380)
+                                                                             .attr('x',605)
+                                                                             .attr('class', 'title')
+                                                                             .text('from the middle of June')
+                                                                             .style('font-size',18)
+                                                                               .style("fill", "#9dabab")
 
 
                         //********************************fourth_scene********************************//
@@ -647,7 +725,10 @@
 
 
 
-                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "red").attr("d", line_US).attr('id','USA').on("click",function(d){
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "red").attr("d", line_US).attr('id','USA')
+                            .on("mouseover",function(d){d3.select(this).style("stroke","blue"); d3.select('#USlegend').style('font-size',25);})
+                                                     .on("mouseout",function(d){d3.select(this).style("stroke","red"); d3.select('#USlegend').style('font-size',15);})
+                            .on("click",function(d){
                               var active1   = Texas.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
                                 var active2   = NJ.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
                                   var active3   = CA.active3? false : true, newOpacity3 = active1 ? 0 : 1;
@@ -684,6 +765,8 @@
                         d3.select("#NYlegend").style("opacity", newOpacity8);
 
 
+
+
                       Texas.active1 = active1;
                       NJ.active2 = active2;
                       CA.active3 = active3;
@@ -695,9 +778,14 @@
 
 
 
+
+
                                                   });
 
-                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#7ed5de").attr("d", line_NY).attr('id','NY').on("click",function(d){
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#7ed5de").attr("d", line_NY).attr('id','NY')
+                            .on("mouseover",function(d){d3.select(this).style("stroke","blue"); d3.select('#NYlegend').style('font-size',25);})
+                                                     .on("mouseout",function(d){d3.select(this).style("stroke","#7ed5de"); d3.select('#NYlegend').style('font-size',15);})
+                                    .on("click",function(d){
                                     var active1   = Texas.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
                                       var active2   = NJ.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
                                         var active3   = CA.active3? false : true, newOpacity3 = active1 ? 0 : 1;
@@ -749,7 +837,10 @@
                             });
 
 
-                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#7edea1").attr("d", line_NJ).attr('id','NJ').on("click",function(d){
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#7edea1").attr("d", line_NJ).attr('id','NJ')
+                            .on("mouseover",function(d){d3.select(this).style("stroke","blue"); d3.select('#NJlegend').style('font-size',25);})
+                                                     .on("mouseout",function(d){d3.select(this).style("stroke","#7edea1"); d3.select('#NJlegend').style('font-size',15);})
+                                    .on("click",function(d){
                                     var active1   = Texas.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
                                       var active2   = NY.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
                                         var active3   = CA.active3? false : true, newOpacity3 = active1 ? 0 : 1;
@@ -800,7 +891,10 @@
 
                                                   });
 
-                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e3e843").attr("d", line_CA).attr('id','CA').on("click",function(d){
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e3e843").attr("d", line_CA).attr('id','CA')
+                            .on("mouseover",function(d){d3.select(this).style("stroke","blue"); d3.select('#CAlegend').style('font-size',25);})
+                                                     .on("mouseout",function(d){d3.select(this).style("stroke","#e3e843"); d3.select('#CAlegend').style('font-size',15);})
+                                                                .on("click",function(d){
                                     var active1   = Texas.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
                                       var active2   = NY.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
                                         var active3   = NJ.active3? false : true, newOpacity3 = active1 ? 0 : 1;
@@ -850,7 +944,10 @@
 
 
                                                   });
-                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e8a643").attr("d", line_TX).attr('id','Texas').on("click",function(d){
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e8a643").attr("d", line_TX).attr('id','Texas')
+                                       .on("mouseover",function(d){d3.select(this).style("stroke","blue"); d3.select('#TXlegend').style('font-size',25);})
+                                                                .on("mouseout",function(d){d3.select(this).style("stroke","#e8a643"); d3.select('#TXlegend').style('font-size',15);})
+                                                                .on("click",function(d){
                                     var active1   = NJ.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
                                       var active2   = NY.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
                                         var active3   = CA.active3? false : true, newOpacity3 = active1 ? 0 : 1;
@@ -900,7 +997,10 @@
 
 
                                                   });
-                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#1970d4").attr("d", line_FL).attr('id','FL').on("click",function(d){
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#1970d4").attr("d", line_FL).attr('id','FL')
+                            .on("mouseover",function(d){d3.select(this).style("stroke","blue"); d3.select('#FLlegend').style('font-size',25);})
+                                                     .on("mouseout",function(d){d3.select(this).style("stroke","#1970d4"); d3.select('#FLlegend').style('font-size',15);})
+                                                                .on("click",function(d){
                                     var active1   = NJ.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
                                       var active2   = NY.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
                                         var active3   = CA.active3? false : true, newOpacity3 = active1 ? 0 : 1;
@@ -950,7 +1050,10 @@
 
 
                                                   });
-                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#736c72").attr("d", line_Top5).attr('id','Top5').on("click",function(d){
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#736c72").attr("d", line_Top5).attr('id','Top5')
+                            .on("mouseover",function(d){d3.select(this).style("stroke","blue"); d3.select('#Top5legend').style('font-size',20);})
+                                                     .on("mouseout",function(d){d3.select(this).style("stroke","#736c72"); d3.select('#Top5legend').style('font-size',15);})
+                                                                .on("click",function(d){
                                     var active1   = NJ.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
                                       var active2   = NY.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
                                         var active3   = CA.active3? false : true, newOpacity3 = active1 ? 0 : 1;
@@ -1000,7 +1103,10 @@
 
 
                                                   });
-                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e8bc43").attr("d", line_TX_FL_CA).attr('id','TXFLCA').on("click",function(d){
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e8bc43").attr("d", line_TX_FL_CA).attr('id','TXFLCA')
+                            .on("mouseover",function(d){d3.select(this).style("stroke","blue"); d3.select('#TXFLCAlegend').style('font-size',20);})
+                                                     .on("mouseout",function(d){d3.select(this).style("stroke","#e8bc43"); d3.select('#TXFLCAlegend').style('font-size',15);})
+                                                                .on("click",function(d){
                               var active1   = NJ.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
                                 var active2   = NY.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
                                   var active3   = CA.active3? false : true, newOpacity3 = active1 ? 0 : 1;
@@ -1052,7 +1158,10 @@
                                             });
 
 
-                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#5e8c86").attr("d", line_NY_NJ).attr('id','NYNJ').on("click",function(d){
+                            svg_final.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#5e8c86").attr("d", line_NY_NJ).attr('id','NYNJ')
+                            .on("mouseover",function(d){d3.select(this).style("stroke","blue"); d3.select('#NYNJlegend').style('font-size',20);})
+                                                     .on("mouseout",function(d){d3.select(this).style("stroke","#5e8c86"); d3.select('#NYNJlegend').style('font-size',15);})
+                                                                .on("click",function(d){
                                 var active1   = NJ.active1 ? false : true, newOpacity1 = active1 ? 0 : 1;
                                 var active2   = NY.active2 ? false : true, newOpacity2 = active1 ? 0 : 1;
                                   var active3   = CA.active3? false : true, newOpacity3 = active1 ? 0 : 1;
@@ -1107,7 +1216,7 @@
             var tooltip=  svg_final.append('g').append('text').attr('y', (200)).attr('x', 500 ).attr('class', 'title').text('').style("opacity", 0).style('fill', 'grey')
 
             var US_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.US_cases) } )
-            .attr("r",2).style("fill", "yellow").style("opacity", 1)
+            .attr("r",3).style("fill", "black").style("opacity", 0.5)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("US Cases:"+ d.US_cases)})
             .on("mousemove",function(d) {tooltip.text("US Cases: "+ d.US_cases)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)})
@@ -1116,56 +1225,56 @@
 
 
            var TX_dot=  svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.Texas_cases) } )
-            .attr("r",2).style("fill", "black").style("opacity", 1)
+            .attr("r",3).style("fill", "black").style("opacity", 0.5)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("Texas:"+ d.Texas_cases)})
             .on("mousemove",function(d) {tooltip.text("Texas:"+ d.Texas_cases)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
             var CA_dot = svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.Cali_cases) } )
-            .attr("r",2).style("fill", "red").style("opacity", 0.5)
+            .attr("r",3).style("fill", "black").style("opacity", 0.5)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("California Cases:"+ d.Cali_cases)})
             .on("mousemove",function(d) {tooltip.text("California Cases: "+ d.Cali_cases)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
             var FL_dot = svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.Florida_cases) } )
-            .attr("r",2).style("fill", "white").style("opacity", 1)
+            .attr("r",3).style("fill", "black").style("opacity", 0.5)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("Florida Cases:"+ d.Florida_cases)})
             .on("mousemove",function(d) {tooltip.text("Florida Cases: "+ d.Florida_cases)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
             var NY_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.NY_cases) } )
-            .attr("r",2).style("fill", "red").style("opacity", 0.5)
+            .attr("r",3).style("fill", "black").style("opacity", 0.5)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("New York Cases: "+ d.NY_cases)})
             .on("mousemove",function(d) {tooltip.text("New York Cases: "+ d.NY_cases)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
             var NJ_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.NJ_cases) } )
-            .attr("r",2).style("fill", "red").style("opacity", 1)
+            .attr("r",3).style("fill", "black").style("opacity", 0.5)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("New Jersey Cases: "+ d.NJ_cases)})
             .on("mousemove",function(d) {tooltip.text("New Jersey Cases: "+ d.NJ_cases)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
 
             var Top5_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.case_sum) } )
-            .attr("r",2).style("fill", "white").style("opacity", 1)
+            .attr("r",3).style("fill", "black").style("opacity", 0.5)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("Top 5 states cases:"+ d.case_sum)})
             .on("mousemove",function(d) {tooltip.text("Top 5 states cases: "+ d.case_sum)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
             var NYNJ_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.ny_nj) } )
-            .attr("r",2).style("fill", "red").style("opacity", 0.5)
+            .attr("r",3).style("fill", "black").style("opacity", 0.5)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("NY and NJ Combined:"+ d.ny_nj)})
             .on("mousemove",function(d) {tooltip.text("NY and NJ Combined: "+ d.ny_nj)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
 
             var TXFLCA_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.tx_flo_cali) } )
-            .attr("r",2)
+            .attr("r",3)
             // .attr("class", "dotstates")
-            .style("fill", "blue").style("opacity", 0.5)
+            .style("fill", "black").style("opacity", 0.5)
             .on("mouseover",function(d) {tooltip.style("opacity", 1).text("TX, FL , CA combined:"+ d.tx_flo_cali)})
             .on("mousemove",function(d) {tooltip.text("TX, FL , CA combined: "+ d.tx_flo_cali)} )
             .on("mouseleave", function(d) {tooltip.transition().duration(200).style("opacity", 0)});
@@ -1267,16 +1376,25 @@
                                                                                 .text('NJ')
                                                                                 .attr("transform",
                                                                                       "rotate(-3)")
-                    
-                    
-                                                                                                                    const makeAnnotations1 = d3.annotation()
-                                                                                                                           .type(d3.annotationLabel)
-                                                                                                                           .annotations(annotations_US)
 
-                                                                                                                         svg_final.append("g")
-                                                                                                                           .attr("class", "annotation-group")
-                                                                                                                           .call(makeAnnotations1)
-                                                                                                                           .style("opacity",1)
+
+
+
+
+
+
+
+
+
+
+                                                                                                                      // const makeAnnotations1 = d3.annotation()
+                                                                                                                      //      .type(d3.annotationLabel)
+                                                                                                                      //      .annotations(annotations_US)
+                                                                                                                      //
+                                                                                                                      //    svg_final.append("g")
+                                                                                                                      //      .attr("class", "annotation-group")
+                                                                                                                      //      .call(makeAnnotations1)
+                                                                                                                      //      .style("opacity",1)
 })
 </script>
 
