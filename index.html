@@ -33,9 +33,9 @@
 
 <script id="first_scene">
 
-                  var margin = {top: 100, right: 30, bottom: 30, left: 250},
+                  var margin = {top: 20, right: 30, bottom: 100, left: 250},
                       width = 1500 - margin.left - margin.right,
-                      height = 800 - margin.top - margin.bottom;
+                      height = 800 - 100 - 30;
 
                   // append the svg object to the body of the page
                   var svg = d3.select("#first_scene")
@@ -174,7 +174,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
 
 
                                 svg.append('text')
-                                  .attr('y',-20)
+                                  .attr('y',20)
                                   .attr('x',430)
                                   .attr('class', 'title')
                                   .text('COVID-19 Cases in USA')
@@ -198,106 +198,222 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                         "rotate(-90)")
                                   .attr('text-anchor','middle')
 
+                                  svg.append('text').attr('y',720)  .attr('x',650).attr('class', 'title').text('Date ( year:2020)').style('font-size',18)
+
+                                                                      //annotation 1
+                                                                        svg.append('g').append('circle')
+                                                                               .attr('class', 'annotation_circle')
+                                                                               .attr("cx", 20)
+                                                                               .attr("cy",670);
 
 
 
-                                const annotations_US = [
-                                {
-                                note: {
-                                  title:"March 13,2020",
-                                  label: "POTUS declare National Emergency"
-                                },
-                                connector: {
-                                  end: "dot",        // none, or arrow or dot
-                                  type: "line",       // Line or curve
-                                  points: 3,           // Number of break in the curve
-                                  lineType : "horizontal"
-                                },
-                                color: ["#69b3a2"],
-                                x: x(new Date("3/13/2020")),  // Takes the pixel number to convert to number
-                                y:  y(2224),
-                                dy: -150,
-                                dx: 35
-                              },
-                              {
-                              note: {
-                                title:"April 11,2020",
-                                label: "Major disaster declaration in all 50 states(first time in US history)"
-                              },
-                              connector: {
-                                end: "dot",         // none, or arrow or dot
-                                type: "line",       // Line or curve
-                                points: 3,           // Number of break in the curve
-                                lineType : "horizontal"
-                              },
-                              color: ["#69b3a2"],
-                              x: x(new Date("4/13/2020")),  // Takes the pixel number to convert to number
-                              y:  y(584018),
-                              dy: -100,
-                              dx: 20
-                            },
-                            {
-                            note: {
-                              title:"March 23,2020",
-                              label: "Stock Market hit 3-year low"
-                            },
-                            connector: {
-                              end: "dot",        // none, or arrow or dot
-                              type: "line",       // Line or curve
-                              points: 3,           // Number of break in the curve
-                              lineType : "horizontal"
-                            },
+                                                                         svg.append('g').append('line')
+                                                                                .style("stroke", "#9dabab")
+                                                                                .attr("x1", 20)
+                                                                                .attr("y1", 670)
+                                                                                .attr("x2", 40)
+                                                                                .attr("y2", 600);
 
-                            x: x(new Date("3/23/2020")),  // Takes the pixel number to convert to number
-                            y:  y(43505),
-                            dy: -100,
-                            dx: 60
-                            },
-                            {
-                            note: {
-                              title:"May 26,2020",
-                              label: "Beginning of Protest over death of George Floyd"
-                            },
-                            connector: {
-                              end: "dot",        // none, or arrow or dot
-                              type: "line",       // Line or curve
-                              points: 3,           // Number of break in the curve
-                              lineType : "horizontal"
-                            },
-                            x: x(new Date("5/26/2020")),  // Takes the pixel number to convert to number
-                            y:  y(1689248),
-                            dy: -100,
-                            dx: -30
-                            },
-                            {
-                            note: {
-                              title:"May 31,2020",
-                              label: "Memorial Day:Coronavirus hospitalizations rise sharply after Holiday"
-                            },
-                            connector: {
-                              end: "dot",        // none, or arrow or dot
-                              type: "line",       // Line or curve
-                              points: 3,           // Number of break in the curve
-                              lineType : "horizontal"
-                            },
-                            x: x(new Date("5/31/2020")),  // Takes the pixel number to convert to number
-                            y:  y(1799035),
-                            dy: -130,
-                            dx: 80
-                            },
+
+                                                                               svg.append('text')
+                                                                                 .attr('y',560)
+                                                                                 .attr('x',10)
+                                                                                 .attr('class', 'annotation_text')
+                                                                                 .text('March 13,2020')
+
+                                                                                   svg.append('text')
+                                                                                     .attr('y',575)
+                                                                                     .attr('x',10)
+                                                                                     .attr('class', 'title')
+                                                                                     .text('POTUS declare')
+                                                                                    .attr('class', 'annotation_text')
+                                                                                       svg.append('text')
+                                                                                         .attr('y',590)
+                                                                                         .attr('x',10)
+                                                                                         .attr('class', 'title')
+                                                                                         .text('National Emergency')
+                                                                                        .attr('class', 'annotation_text')
 
 
 
 
-                                ]
 
-                                const makeAnnotations = d3.annotation()
-                                     .type(d3.annotationLabel)
-                                     .annotations(annotations_US)
 
-                                   svg.append("g")
-                                     // .attr("class", "annotation-group")
-                                     .call(makeAnnotations)
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                   svg.append('g').append('circle')
+                                                                                           .attr('class', 'annotation_circle')
+                                                                                          .attr("cx", 120)
+                                                                                          .attr("cy", 662);
+
+                                                                                          svg.append('g').append('line')
+                                                                                                 .style("stroke", "#9dabab")
+                                                                                                 .attr("x1", 120)
+                                                                                                 .attr("y1", 662)
+                                                                                                 .attr("x2", 160)
+                                                                                                 .attr("y2", 600);
+
+
+                                                                                                svg.append('text')
+                                                                                                  .attr('y',560)
+                                                                                                  .attr('x',140)
+                                                                                                  .attr('class', 'annotation_text')
+                                                                                                  .text('March 23,2020')
+
+                                                                                                    svg.append('text')
+                                                                                                      .attr('y',575)
+                                                                                                      .attr('x',140)
+                                                                                                      .attr('class', 'title')
+                                                                                                      .text('Stock Market hit')
+                                                                                                     .attr('class', 'annotation_text')
+                                                                                                        svg.append('text')
+                                                                                                          .attr('y',590)
+                                                                                                          .attr('x',140)
+                                                                                                          .attr('class', 'title')
+                                                                                                          .text('3-year low')
+                                                                                                         .attr('class', 'annotation_text')
+
+
+
+
+
+
+
+
+                                                                                          svg.append('g').append('circle')
+                                                                                                 .attr('class', 'annotation_circle')
+                                                                                                 .attr("cx", 290)
+                                                                                                 .attr("cy", 585)
+
+                                                                                                 svg.append('g').append('line')
+                                                                                                        .style("stroke", "#9dabab")
+                                                                                                        .attr("x1", 290)
+                                                                                                        .attr("y1", 585)
+                                                                                                        .attr("x2", 320)
+                                                                                                        .attr("y2", 520);
+
+
+                                                                                                       svg.append('text')
+                                                                                                         .attr('y',465)
+                                                                                                         .attr('x',300)
+                                                                                                         .attr('class', 'annotation_text')
+                                                                                                         .text('April 11,2020')
+
+                                                                                                           svg.append('text')
+                                                                                                           .attr('y',480)
+                                                                                                           .attr('x',300)
+                                                                                                             .attr('class', 'title')
+                                                                                                             .text('Major disaster declaration')
+                                                                                                            .attr('class', 'annotation_text')
+                                                                                                               svg.append('text')
+                                                                                                               .attr('y',495)
+                                                                                                               .attr('x',300)
+                                                                                                                 .attr('class', 'title')
+                                                                                                                 .text('in all 50 States')
+                                                                                                                .attr('class', 'annotation_text')
+                                                                                                                svg.append('text')
+                                                                                                                .attr('y',510)
+                                                                                                                .attr('x',300)
+                                                                                                                  .attr('class', 'title')
+                                                                                                                  .text('(First time in US History)')
+                                                                                                                 .attr('class', 'annotation_text')
+
+
+
+
+
+                                                                                                 svg.append('g').append('circle')
+                                                                                                       .attr('class', 'annotation_circle')
+                                                                                                        .attr("cx", 720)
+                                                                                                        .attr("cy", 390)
+
+                                                                                                        svg.append('g').append('line')
+                                                                                                               .style("stroke", "#9dabab")
+                                                                                                               .attr("x1", 720)
+                                                                                                               .attr("y1", 390)
+                                                                                                               .attr("x2", 680)
+                                                                                                               .attr("y2", 330);
+
+                                                                                                            var x4 =  svg.append('text')
+                                                                                                                .attr('y',275)
+                                                                                                                .attr('x',620)
+                                                                                                                .attr('class', 'annotation_text')
+                                                                                                                .text('May 26,2020');
+
+                                                                                                                  svg.append('text')
+                                                                                                                  .attr('y',290)
+                                                                                                                  .attr('x',620)
+                                                                                                                    .attr('class', 'title')
+                                                                                                                    .text('Beginning of Protest')
+                                                                                                                   .attr('class', 'annotation_text')
+                                                                                                                      svg.append('text')
+                                                                                                                      .attr('y',305)
+                                                                                                                      .attr('x',620)
+                                                                                                                        .attr('class', 'title')
+                                                                                                                        .text('over the death of ')
+                                                                                                                       .attr('class', 'annotation_text')
+                                                                                                                       svg.append('text')
+                                                                                                                       .attr('y',320)
+                                                                                                                       .attr('x',620)
+                                                                                                                         .attr('class', 'title')
+                                                                                                                         .text('George Floyd')
+                                                                                                                        .attr('class', 'annotation_text')
+
+
+                                                                                                        svg.append('g').append('circle')
+                                                                                                             .attr('class', 'annotation_circle')
+                                                                                                               .attr("cx", 760)
+                                                                                                               .attr("cy", 376)
+
+                                                                                                               svg.append('g').append('line')
+                                                                                                                      .style("stroke", "#9dabab")
+                                                                                                                      .attr("x1", 760)
+                                                                                                                      .attr("y1", 376)
+                                                                                                                      .attr("x2", 780)
+                                                                                                                      .attr("y2", 295);
+
+
+                                                                                                                     svg.append('text')
+                                                                                                                       .attr('y',240)
+                                                                                                                       .attr('x',780)
+                                                                                                                       .attr('class', 'annotation_text')
+                                                                                                                       .text('May 26,2020')
+
+                                                                                                                         svg.append('text')
+                                                                                                                         .attr('y',255)
+                                                                                                                         .attr('x',780)
+                                                                                                                           .attr('class', 'title')
+                                                                                                                           .text('Beginning of Protest')
+                                                                                                                          .attr('class', 'annotation_text')
+                                                                                                                             svg.append('text')
+                                                                                                                             .attr('y',270)
+                                                                                                                             .attr('x',780)
+                                                                                                                               .attr('class', 'title')
+                                                                                                                               .text('over the death of ')
+                                                                                                                              .attr('class', 'annotation_text')
+                                                                                                                              svg.append('text')
+                                                                                                                              .attr('y',285)
+                                                                                                                              .attr('x',780)
+                                                                                                                                .attr('class', 'title')
+                                                                                                                                .text('George Floyd')
+                                                                                                                               .attr('class', 'annotation_text')
+
+
+
+
+
+
 
 
 
@@ -325,10 +441,12 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
 
 
                                      svg_second.append('text')
-                                       .attr('y',-20)
+                                       .attr('y',20)
                                        .attr('x',330)
                                        .attr('class', 'title')
                                        .text('COVID-19 Cases in New York and New Jersey')
+
+                                       svg_second.append('text').attr('y',720)  .attr('x',650).attr('class', 'title').text('Date ( year:2020)').style('font-size',18)
 
                                      svg_second.append('text')
                                        .attr('y',-60)
@@ -451,10 +569,12 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
 
 
                                        svg_third.append('text')
-                                         .attr('y',-20)
+                                         .attr('y',20)
                                          .attr('x',320)
                                          .attr('class', 'title')
                                          .text('Growing COVID-19 Cases in TX,FL, and CA ')
+
+                                         svg_third.append('text').attr('y',720)  .attr('x',650).attr('class', 'title').text('Date ( year:2020)').style('font-size',18)
 
                                        svg_third.append('text')
                                          .attr('y',-60)
@@ -575,13 +695,16 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                            svg_fourth.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e8bc43").attr("d", line_TX_FL_CA)
                            svg_fourth.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#5e8c86").attr("d", line_NY_NJ)
 
-                            svg_fourth.append('text').attr('y',-20).attr('x',150).attr('class', 'title').text('How States with top 5 cases contributing total US Cases?')
+                            svg_fourth.append('text').attr('y',720)  .attr('x',650).attr('class', 'title').text('Date ( year:2020)').style('font-size',18)
+                            svg_fourth.append('text').attr('y',20).attr('x',150).attr('class', 'title').text('How States with top 5 cases contributing total US Cases?')
                             svg_fourth.append('text').attr('y',-60).attr('x',-330).attr('class', 'title').text('COVID-19 Cases').style('font-size',18).attr("transform","rotate(-90)").attr('text-anchor','middle')
                             svg_fourth.append('g').attr("transform", "translate("+width+",100)").append('text').attr('y',-22).attr('x',-150).attr('class', 'legend_cases').text('Cases in USA').attr("transform","rotate(-45)")
                             svg_fourth.append('g').attr("transform", "translate("+width+",0)").append('text').attr('y',355).attr('x',-370).attr('class', 'legend_cases').text('Top 5 States Combined').attr("transform","rotate(-27)")
                             svg_fourth.append('g').attr("transform", "translate("+width+",0)").append('text').attr('y',568).attr('x',-370).attr('class', 'legend_cases').text('NY and NJ Combined').attr("transform","rotate(-1)")
                             svg_fourth.append('g').attr("transform", "translate("+width+",0)").append('text').attr('y',450).attr('x',-380).attr('class', 'legend_cases').text('TX,CA,FL Combined').attr("transform","rotate(-25)")
 
+
+                              .attr('text-anchor','middle')
 
                             svg_fourth.append('text')
                               .attr('y',460)
@@ -1166,7 +1289,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                         });
 
 
-            var tooltip=  svg_final.append('g').append('text').attr('y', (200)).attr('x', 500 ).attr('class', 'title').text('').style("opacity", 0).style('fill', 'grey')
+            var tooltip=  svg_final.append('g').append('text').attr('y', 200).attr('x', 300 ).attr('class', 'title').text('').style("opacity", 0).style('fill', 'red')
 
             var US_dot=svg_final.append('g').selectAll('circle').data(data).enter().append('circle').attr("cx", function(d) { return x(d.date) } ).attr("cy", function(d) { return y(d.US_cases) } )
             .attr("r",3).style("fill", "black").style("opacity", 0.5)
@@ -1237,7 +1360,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
 
 
                         svg_final.append('text')
-                          .attr('y',-20)
+                          .attr('y',20)
                           .attr('x',150)
                           .attr('class', 'title')
                           .text('COVID-19 Cases Comparison: US vs  5 States with highest cases')
@@ -1251,6 +1374,16 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                           .attr("transform",
                                 "rotate(-90)")
                           .attr('text-anchor','middle')
+
+
+                          svg_final.append('text')
+                            .attr('y',720)
+                            .attr('x',650)
+                            .attr('class', 'title')
+                            .text('Date ( year:2020)')
+                            .style('font-size',18)
+
+                            .attr('text-anchor','middle')
 
 
 
@@ -1333,7 +1466,226 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                                                                 .attr('class', 'legend_cases')
                                                                                 .text('NJ')
                                                                                 .attr("transform",
-                                                                                      "rotate(-3)")
+                                                                                      "rotate(-3)");
+
+                                                                                      svg_final.append('g').append('circle')
+                                                                                             .attr('class', 'annotation_circle')
+                                                                                             .attr("cx", 20)
+                                                                                             .attr("cy",670);
+
+
+
+                                                                                       svg_final.append('g').append('line')
+                                                                                              .style("stroke", "#9dabab")
+                                                                                              .attr("x1", 20)
+                                                                                              .attr("y1", 670)
+                                                                                              .attr("x2", 40)
+                                                                                              .attr("y2", 600);
+
+
+                                                                                             svg_final.append('text')
+                                                                                               .attr('y',560)
+                                                                                               .attr('x',10)
+                                                                                               .attr('class', 'annotation_text')
+                                                                                               .text('March 13,2020')
+
+                                                                                                 svg_final.append('text')
+                                                                                                   .attr('y',575)
+                                                                                                   .attr('x',10)
+                                                                                                   .attr('class', 'title')
+                                                                                                   .text('POTUS declare')
+                                                                                                  .attr('class', 'annotation_text')
+                                                                                                     svg_final.append('text')
+                                                                                                       .attr('y',590)
+                                                                                                       .attr('x',10)
+                                                                                                       .attr('class', 'title')
+                                                                                                       .text('National Emergency')
+                                                                                                      .attr('class', 'annotation_text')
+
+                                                                                                      svg_final.append('g').append('circle')
+                                                                                                              .attr('class', 'annotation_circle')
+                                                                                                             .attr("cx", 120)
+                                                                                                             .attr("cy", 662);
+
+                                                                                                             svg_final.append('g').append('line')
+                                                                                                                    .style("stroke", "#9dabab")
+                                                                                                                    .attr("x1", 120)
+                                                                                                                    .attr("y1", 662)
+                                                                                                                    .attr("x2", 160)
+                                                                                                                    .attr("y2", 600);
+
+
+                                                                                                                svg_final.append('text')
+                                                                                                                     .attr('y',560)
+                                                                                                                     .attr('x',140)
+                                                                                                                     .attr('class', 'annotation_text')
+                                                                                                                     .text('March 23,2020')
+
+                                                                                                                       svg_final.append('text')
+                                                                                                                         .attr('y',575)
+                                                                                                                         .attr('x',140)
+                                                                                                                         .attr('class', 'title')
+                                                                                                                         .text('Stock Market hit')
+                                                                                                                        .attr('class', 'annotation_text')
+                                                                                                                           svg_final.append('text')
+                                                                                                                             .attr('y',590)
+                                                                                                                             .attr('x',140)
+                                                                                                                             .attr('class', 'title')
+                                                                                                                             .text('3-year low')
+                                                                                                                            .attr('class', 'annotation_text')
+
+
+
+
+
+
+
+
+                                                                                                             svg_final.append('g').append('circle')
+                                                                                                                    .attr('class', 'annotation_circle')
+                                                                                                                    .attr("cx", 290)
+                                                                                                                    .attr("cy", 585)
+
+                                                                                                                    svg_final.append('g').append('line')
+                                                                                                                           .style("stroke", "#9dabab")
+                                                                                                                           .attr("x1", 290)
+                                                                                                                           .attr("y1", 585)
+                                                                                                                           .attr("x2", 320)
+                                                                                                                           .attr("y2", 520);
+
+
+                                                                                                                          svg_final.append('text')
+                                                                                                                            .attr('y',465)
+                                                                                                                            .attr('x',300)
+                                                                                                                            .attr('class', 'annotation_text')
+                                                                                                                            .text('April 11,2020')
+
+                                                                                                                              svg_final.append('text')
+                                                                                                                              .attr('y',480)
+                                                                                                                              .attr('x',300)
+                                                                                                                                .attr('class', 'title')
+                                                                                                                                .text('Major disaster declaration')
+                                                                                                                               .attr('class', 'annotation_text')
+                                                                                                                                svg_final.append('text')
+                                                                                                                                  .attr('y',495)
+                                                                                                                                  .attr('x',300)
+                                                                                                                                    .attr('class', 'title')
+                                                                                                                                    .text('in all 50 States')
+                                                                                                                                   .attr('class', 'annotation_text')
+                                                                                                                                   svg_final.append('text')
+                                                                                                                                   .attr('y',510)
+                                                                                                                                   .attr('x',300)
+                                                                                                                                     .attr('class', 'title')
+                                                                                                                                     .text('(First time in US History)')
+                                                                                                                                    .attr('class', 'annotation_text')
+
+
+
+
+
+                                                                                                                    svg_final.append('g').append('circle')
+                                                                                                                          .attr('class', 'annotation_circle')
+                                                                                                                           .attr("cx", 720)
+                                                                                                                           .attr("cy", 390)
+
+                                                                                                                           svg_final.append('g').append('line')
+                                                                                                                                  .style("stroke", "#9dabab")
+                                                                                                                                  .attr("x1", 720)
+                                                                                                                                  .attr("y1", 390)
+                                                                                                                                  .attr("x2", 680)
+                                                                                                                                  .attr("y2", 330);
+
+                                                                                                                                svg_final.append('text')
+                                                                                                                                   .attr('y',275)
+                                                                                                                                   .attr('x',620)
+                                                                                                                                   .attr('class', 'annotation_text')
+                                                                                                                                   .text('May 26,2020');
+
+                                                                                                                                     svg_final.append('text')
+                                                                                                                                     .attr('y',290)
+                                                                                                                                     .attr('x',620)
+                                                                                                                                       .attr('class', 'title')
+                                                                                                                                       .text('Beginning of Protest')
+                                                                                                                                      .attr('class', 'annotation_text')
+                                                                                                                                        svg_final.append('text')
+                                                                                                                                         .attr('y',305)
+                                                                                                                                         .attr('x',620)
+                                                                                                                                           .attr('class', 'title')
+                                                                                                                                           .text('over the death of ')
+                                                                                                                                          .attr('class', 'annotation_text')
+                                                                                                                                        svg_final.append('text')
+                                                                                                                                          .attr('y',320)
+                                                                                                                                          .attr('x',620)
+                                                                                                                                            .attr('class', 'title')
+                                                                                                                                            .text('George Floyd')
+                                                                                                                                           .attr('class', 'annotation_text')
+
+
+                                                                                                                           svg_final.append('g').append('circle')
+                                                                                                                                .attr('class', 'annotation_circle')
+                                                                                                                                  .attr("cx", 760)
+                                                                                                                                  .attr("cy", 376)
+
+                                                                                                                                  svg_final.append('g').append('line')
+                                                                                                                                         .style("stroke", "#9dabab")
+                                                                                                                                         .attr("x1", 760)
+                                                                                                                                         .attr("y1", 376)
+                                                                                                                                         .attr("x2", 780)
+                                                                                                                                         .attr("y2", 295);
+
+
+                                                                                                                                        svg_final.append('text')
+                                                                                                                                          .attr('y',240)
+                                                                                                                                          .attr('x',780)
+                                                                                                                                          .attr('class', 'annotation_text')
+                                                                                                                                          .text('May 26,2020')
+
+                                                                                                                                            svg_final.append('text')
+                                                                                                                                            .attr('y',255)
+                                                                                                                                            .attr('x',780)
+                                                                                                                                              .attr('class', 'title')
+                                                                                                                                              .text('Beginning of Protest')
+                                                                                                                                             .attr('class', 'annotation_text')
+                                                                                                                                                svg_final.append('text')
+                                                                                                                                                .attr('y',270)
+                                                                                                                                                .attr('x',780)
+                                                                                                                                                  .attr('class', 'title')
+                                                                                                                                                  .text('over the death of ')
+                                                                                                                                                 .attr('class', 'annotation_text')
+                                                                                                                                                 svg_final.append('text')
+                                                                                                                                                 .attr('y',285)
+                                                                                                                                                 .attr('x',780)
+                                                                                                                                                   .attr('class', 'title')
+                                                                                                                                                   .text('George Floyd')
+                                                                                                                                                  .attr('class', 'annotation_text')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
