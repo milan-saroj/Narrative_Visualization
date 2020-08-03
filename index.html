@@ -4,12 +4,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
-<body>
+<body style="background:#e6eded" >
 
   <script src="https://d3js.org/d3.v4.js"></script>
-  
-  
+
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+  <div style="background:#e6eded;" >
+     <h3 style="text-align:center"> Contribution of 5 States with highest COVID-19<br> cases for the rise of nationwide cases in USA </h3>
+     <p style="text-align:left; "> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCOVID-19 (corona virus disease-19), which was declared pandemic by WHO on March 11, 2020
+        has infected more than 15 millions all over the world. USA, which had its first case on  January 21,is now has the largest population with COVID-19 cases. Even though few states
+     <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp have showed a sign of recovery, most of the states are far from controlling the spread.
+        New York and New Jersey, where cases were high in the beginning have managed to control the spread, while states like Texas, California, and Florida has continous rise in COVID-19 cases. </p>
+    </div>
 
 <div class="tab">
   <button class="tablinks" onclick="opentab(event, 'first_scene')">1</button>
@@ -17,23 +24,21 @@
   <button class="tablinks" onclick="opentab(event, 'third_scene')">3</button>
   <button class="tablinks" onclick="opentab(event, 'fourth_scene')">4</button>
   <button class="tablinks" onclick="opentab(event, 'final_scene')">5</button>
-
 </div>
 
 
 
 
-<div id="first_scene" class="tabcontent"></div>
-<div id="fourth_scene" class="tabcontent"></div>
-<div id="final_scene" class="tabcontent"></div>
-<div id="second_scene" class="tabcontent"></div>
-<div id="third_scene" class="tabcontent"></div>
-
-
+<div id="first_scene" class="tabcontent" style="background:#ffffff;"></div>
+<div id="fourth_scene" class="tabcontent"style="background:#ffffff;"></div>
+<div id="final_scene" class="tabcontent"style="background:#ffffff;"></div>
+<div id="second_scene" class="tabcontent"style="background:#ffffff;"></div>
+<div id="third_scene" class="tabcontent"style="background:#ffffff;"></div>
+<div > <p style="text-align:center;">  <span style="font-weight:bold">Growing COVID-19 Cases in United States:</span> New York, New Jersey contributed initial rise of nation's COVID-19 cases, while states like Texas, California, and Florida responsible for current surge in cases. </p></div>
 
 <script id="first_scene">
 
-                  var margin = {top: 20, right: 30, bottom: 100, left: 250},
+                  var margin = {top: 5, right: 30, bottom: 43, left: 250},
                       width = 1500 - margin.left - margin.right,
                       height = 800 - 100 - 30;
 
@@ -198,7 +203,9 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                         "rotate(-90)")
                                   .attr('text-anchor','middle')
 
-                                  svg.append('text').attr('y',720)  .attr('x',650).attr('class', 'title').text('Date ( year:2020)').style('font-size',18)
+                                  svg.append('text').attr('y',710)  .attr('x',650).attr('class', 'title').text('Date ( year:2020)').style('font-size',18)
+
+                                  svg.append('text').attr('y',730)  .attr('x',650).attr('class', 'title').text('hello').style('font-size',18)
 
                                                                       //annotation 1
                                                                         svg.append('g').append('circle')
@@ -221,12 +228,18 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                                                                  .attr('x',10)
                                                                                  .attr('class', 'annotation_text')
                                                                                  .text('March 13,2020')
+                                                                                 .style('font-size',15).style("fill", "#9dabab")
+
+
 
                                                                                    svg.append('text')
                                                                                      .attr('y',575)
                                                                                      .attr('x',10)
                                                                                      .attr('class', 'title')
                                                                                      .text('POTUS declare')
+                                                                                     .style('font-size',15)
+                                                                                       .style("fill", "#9dabab")
+
                                                                                     .attr('class', 'annotation_text')
                                                                                        svg.append('text')
                                                                                          .attr('y',590)
@@ -234,6 +247,8 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                                                                          .attr('class', 'title')
                                                                                          .text('National Emergency')
                                                                                         .attr('class', 'annotation_text')
+                                                                                        .style('font-size',15)
+                                                                                          .style("fill", "#9dabab")
 
 
 
@@ -269,20 +284,20 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                                                                                   .attr('y',560)
                                                                                                   .attr('x',140)
                                                                                                   .attr('class', 'annotation_text')
-                                                                                                  .text('March 23,2020')
+                                                                                                  .text('March 23,2020').style('font-size',15).style("fill", "#9dabab")
 
                                                                                                     svg.append('text')
                                                                                                       .attr('y',575)
                                                                                                       .attr('x',140)
                                                                                                       .attr('class', 'title')
                                                                                                       .text('Stock Market hit')
-                                                                                                     .attr('class', 'annotation_text')
+                                                                                                     .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
                                                                                                         svg.append('text')
                                                                                                           .attr('y',590)
                                                                                                           .attr('x',140)
                                                                                                           .attr('class', 'title')
                                                                                                           .text('3-year low')
-                                                                                                         .attr('class', 'annotation_text')
+                                                                                                         .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
 
 
 
@@ -306,28 +321,28 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
 
                                                                                                        svg.append('text')
                                                                                                          .attr('y',465)
-                                                                                                         .attr('x',300)
+                                                                                                         .attr('x',260)
                                                                                                          .attr('class', 'annotation_text')
-                                                                                                         .text('April 11,2020')
+                                                                                                         .text('April 11,2020').style('font-size',15).style("fill", "#9dabab")
 
                                                                                                            svg.append('text')
                                                                                                            .attr('y',480)
-                                                                                                           .attr('x',300)
+                                                                                                           .attr('x',260)
                                                                                                              .attr('class', 'title')
                                                                                                              .text('Major disaster declaration')
-                                                                                                            .attr('class', 'annotation_text')
+                                                                                                            .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
                                                                                                                svg.append('text')
                                                                                                                .attr('y',495)
-                                                                                                               .attr('x',300)
+                                                                                                               .attr('x',260)
                                                                                                                  .attr('class', 'title')
                                                                                                                  .text('in all 50 States')
-                                                                                                                .attr('class', 'annotation_text')
+                                                                                                                .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
                                                                                                                 svg.append('text')
                                                                                                                 .attr('y',510)
-                                                                                                                .attr('x',300)
+                                                                                                                .attr('x',260)
                                                                                                                   .attr('class', 'title')
                                                                                                                   .text('(First time in US History)')
-                                                                                                                 .attr('class', 'annotation_text')
+                                                                                                                 .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
 
 
 
@@ -349,26 +364,26 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                                                                                                 .attr('y',275)
                                                                                                                 .attr('x',620)
                                                                                                                 .attr('class', 'annotation_text')
-                                                                                                                .text('May 26,2020');
+                                                                                                                .text('May 26,2020').style('font-size',15).style("fill", "#9dabab");
 
                                                                                                                   svg.append('text')
                                                                                                                   .attr('y',290)
                                                                                                                   .attr('x',620)
                                                                                                                     .attr('class', 'title')
                                                                                                                     .text('Beginning of Protest')
-                                                                                                                   .attr('class', 'annotation_text')
+                                                                                                                   .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
                                                                                                                       svg.append('text')
                                                                                                                       .attr('y',305)
                                                                                                                       .attr('x',620)
                                                                                                                         .attr('class', 'title')
                                                                                                                         .text('over the death of ')
-                                                                                                                       .attr('class', 'annotation_text')
+                                                                                                                       .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
                                                                                                                        svg.append('text')
                                                                                                                        .attr('y',320)
                                                                                                                        .attr('x',620)
                                                                                                                          .attr('class', 'title')
                                                                                                                          .text('George Floyd')
-                                                                                                                        .attr('class', 'annotation_text')
+                                                                                                                        .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
 
 
                                                                                                         svg.append('g').append('circle')
@@ -395,19 +410,19 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                                                                                                           .attr('x',780)
                                                                                                                             .attr('class', 'title')
                                                                                                                             .text('Memorial Day:')
-                                                                                                                           .attr('class', 'annotation_text')
+                                                                                                                           .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
                                                                                                                               svg.append('text')
                                                                                                                               .attr('y',270)
                                                                                                                               .attr('x',780)
                                                                                                                                 .attr('class', 'title')
                                                                                                                                 .text('Virus hospitalizations rise')
-                                                                                                                               .attr('class', 'annotation_text')
+                                                                                                                               .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
                                                                                                                                svg.append('text')
                                                                                                                                .attr('y',285)
                                                                                                                                .attr('x',780)
                                                                                                                                  .attr('class', 'title')
                                                                                                                                  .text('sharply after holiday')
-                                                                                                                                .attr('class', 'annotation_text')
+                                                                                                                                .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
 
 
 
@@ -446,7 +461,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                        .attr('class', 'title')
                                        .text('COVID-19 Cases in New York and New Jersey')
 
-                                       svg_second.append('text').attr('y',720)  .attr('x',650).attr('class', 'title').text('Date ( year:2020)').style('font-size',18)
+                                       svg_second.append('text').attr('y',710)  .attr('x',650).attr('class', 'title').text('Date ( year:2020)').style('font-size',18)
 
                                      svg_second.append('text')
                                        .attr('y',-60)
@@ -511,14 +526,12 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
 
 
                                           svg_second.append('g').append('circle')
-                                                 .style("fill", "#9dabab")
-                                                 .style("stroke-width", 1)
+                                                    .attr('class', 'annotation_circle')
                                                  .attr("cx", 500)
                                                  .attr("cy", 246)
                                                  .attr("r", 4);
                                                  svg_second.append('g').append('circle')
-                                                        .style("fill", "#9dabab")
-                                                        .style("stroke-width", 1)
+                                                       .attr('class', 'annotation_circle')
                                                         .attr("cx", 500)
                                                         .attr("cy", 505)
                                                         .attr("r", 4);
@@ -574,7 +587,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                          .attr('class', 'title')
                                          .text('Growing COVID-19 Cases in TX,FL, and CA ')
 
-                                         svg_third.append('text').attr('y',720)  .attr('x',650).attr('class', 'title').text('Date ( year:2020)').style('font-size',18)
+                                         svg_third.append('text').attr('y',710)  .attr('x',650).attr('class', 'title').text('Date ( year:2020)').style('font-size',18)
 
                                        svg_third.append('text')
                                          .attr('y',-60)
@@ -657,8 +670,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
 
 
                                                                            svg_third.append('g').append('circle')
-                                                                                  .style("fill", "#9dabab")
-                                                                                  .style("stroke-width", 1)
+                                                                                     .attr('class', 'annotation_circle')
                                                                                   .attr("cx", 880)
                                                                                   .attr("cy", 460)
                                                                                   .attr("r", 4);
@@ -695,7 +707,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                            svg_fourth.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#e8bc43").attr("d", line_TX_FL_CA)
                            svg_fourth.append('g').append("path").datum(data).attr("class", "line").style('stroke', "#5e8c86").attr("d", line_NY_NJ)
 
-                            svg_fourth.append('text').attr('y',720)  .attr('x',650).attr('class', 'title').text('Date ( year:2020)').style('font-size',18)
+                            svg_fourth.append('text').attr('y',710)  .attr('x',650).attr('class', 'title').text('Date ( year:2020)').style('font-size',18)
                             svg_fourth.append('text').attr('y',20).attr('x',150).attr('class', 'title').text('How States with top 5 cases contributing total US Cases?')
                             svg_fourth.append('text').attr('y',-60).attr('x',-330).attr('class', 'title').text('COVID-19 Cases').style('font-size',18).attr("transform","rotate(-90)").attr('text-anchor','middle')
                             svg_fourth.append('g').attr("transform", "translate("+width+",100)").append('text').attr('y',-22).attr('x',-150).attr('class', 'legend_cases').text('Cases in USA').attr("transform","rotate(-45)")
@@ -738,8 +750,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                                   .attr("y2", 570);
 
                                                   svg_fourth.append('g').append('circle')
-                                                         .style("fill", "#9dabab")
-                                                         .style("stroke-width", 1)
+                                                         .attr('class', 'annotation_circle')
                                                          .attr("cx", 300)
                                                          .attr("cy", 570)
                                                          .attr("r", 4);
@@ -761,8 +772,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                                                        .attr("y2", 620);
 
                                                                        svg_fourth.append('g').append('circle')
-                                                                              .style("fill", "#9dabab")
-                                                                              .style("stroke-width", 1)
+                                                                               .attr('class', 'annotation_circle')
                                                                               .attr("cx", 1150)
                                                                               .attr("cy", 560)
                                                                               .attr("r", 4);
@@ -794,8 +804,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                                                                                     .attr("y2", 515);
 
                                                                                                     svg_fourth.append('g').append('circle')
-                                                                                                           .style("fill", "#9dabab")
-                                                                                                           .style("stroke-width", 1)
+                                                                                                             .attr('class', 'annotation_circle')
                                                                                                            .attr("cx", 950)
                                                                                                            .attr("cy", 515)
                                                                                                            .attr("r", 4);
@@ -1478,8 +1487,8 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
 
 
                           svg_final.append('text')
-                            .attr('y',720)
-                            .attr('x',650)
+                            .attr('y',710)
+                            .attr('x',713.5)
                             .attr('class', 'title')
                             .text('Date ( year:2020)')
                             .style('font-size',18)
@@ -1591,7 +1600,7 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                                                                                .attr('y',560)
                                                                                                .attr('x',10)
                                                                                                .attr('class', 'annotation_text')
-                                                                                               .text('March 13,2020')
+                                                                                               .text('March 13,2020').style('font-size',15).style("fill", "#9dabab")
 
                                                                                                  svg_final.append('text')
                                                                                                  .attr('id','an4')
@@ -1599,14 +1608,14 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                                                                                    .attr('x',10)
                                                                                                    .attr('class', 'title')
                                                                                                    .text('POTUS declare')
-                                                                                                  .attr('class', 'annotation_text')
+                                                                                                  .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
                                                                                                      svg_final.append('text')
                                                                                                      .attr('id','an5')
                                                                                                        .attr('y',590)
                                                                                                        .attr('x',10)
                                                                                                        .attr('class', 'title')
                                                                                                        .text('National Emergency')
-                                                                                                      .attr('class', 'annotation_text')
+                                                                                                      .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
 
                                                                                                       svg_final.append('g').append('circle').attr('id','an6')
                                                                                                               .attr('class', 'annotation_circle')
@@ -1625,20 +1634,20 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                                                                                                      .attr('y',560)
                                                                                                                      .attr('x',140)
                                                                                                                      .attr('class', 'annotation_text')
-                                                                                                                     .text('March 23,2020')
+                                                                                                                     .text('March 23,2020').style('font-size',15).style("fill", "#9dabab")
 
                                                                                                                        svg_final.append('text').attr('id','an9')
                                                                                                                          .attr('y',575)
                                                                                                                          .attr('x',140)
                                                                                                                          .attr('class', 'title')
                                                                                                                          .text('Stock Market hit')
-                                                                                                                        .attr('class', 'annotation_text')
+                                                                                                                        .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
                                                                                                                            svg_final.append('text').attr('id','an10')
                                                                                                                              .attr('y',590)
                                                                                                                              .attr('x',140)
                                                                                                                              .attr('class', 'title')
                                                                                                                              .text('3-year low')
-                                                                                                                            .attr('class', 'annotation_text')
+                                                                                                                            .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
 
 
 
@@ -1662,28 +1671,28 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
 
                                                                                                                           svg_final.append('text').attr('id','an13')
                                                                                                                             .attr('y',465)
-                                                                                                                            .attr('x',300)
+                                                                                                                            .attr('x',260)
                                                                                                                             .attr('class', 'annotation_text')
-                                                                                                                            .text('April 11,2020')
+                                                                                                                            .text('April 11,2020').style('font-size',15).style("fill", "#9dabab")
 
                                                                                                                               svg_final.append('text').attr('id','an14')
                                                                                                                               .attr('y',480)
-                                                                                                                              .attr('x',300)
+                                                                                                                              .attr('x',260)
                                                                                                                                 .attr('class', 'title')
                                                                                                                                 .text('Major disaster declaration')
-                                                                                                                               .attr('class', 'annotation_text')
+                                                                                                                               .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
                                                                                                                                 svg_final.append('text').attr('id','an15')
                                                                                                                                   .attr('y',495)
-                                                                                                                                  .attr('x',300)
+                                                                                                                                  .attr('x',260)
                                                                                                                                     .attr('class', 'title')
                                                                                                                                     .text('in all 50 States')
-                                                                                                                                   .attr('class', 'annotation_text')
+                                                                                                                                   .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
                                                                                                                                    svg_final.append('text').attr('id','an16')
                                                                                                                                    .attr('y',510)
-                                                                                                                                   .attr('x',300)
+                                                                                                                                   .attr('x',260)
                                                                                                                                      .attr('class', 'title')
                                                                                                                                      .text('(First time in US History)')
-                                                                                                                                    .attr('class', 'annotation_text')
+                                                                                                                                    .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
 
 
 
@@ -1705,26 +1714,26 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                                                                                                                    .attr('y',275)
                                                                                                                                    .attr('x',620)
                                                                                                                                    .attr('class', 'annotation_text')
-                                                                                                                                   .text('May 26,2020');
+                                                                                                                                   .text('May 26,2020').style('font-size',15).style("fill", "#9dabab");
 
                                                                                                                                      svg_final.append('text').attr('id','an20')
                                                                                                                                      .attr('y',290)
                                                                                                                                      .attr('x',620)
                                                                                                                                        .attr('class', 'title')
                                                                                                                                        .text('Beginning of Protest')
-                                                                                                                                      .attr('class', 'annotation_text')
+                                                                                                                                      .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
                                                                                                                                         svg_final.append('text').attr('id','an21')
                                                                                                                                          .attr('y',305)
                                                                                                                                          .attr('x',620)
                                                                                                                                            .attr('class', 'title')
                                                                                                                                            .text('over the death of ')
-                                                                                                                                          .attr('class', 'annotation_text')
+                                                                                                                                          .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
                                                                                                                                         svg_final.append('text').attr('id','an22')
                                                                                                                                           .attr('y',320)
                                                                                                                                           .attr('x',620)
                                                                                                                                             .attr('class', 'title')
                                                                                                                                             .text('George Floyd')
-                                                                                                                                           .attr('class', 'annotation_text')
+                                                                                                                                           .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
 
 
                                                                                                                            svg_final.append('g').append('circle').attr('id','an23')
@@ -1744,26 +1753,26 @@ d3.csv("https://raw.githubusercontent.com/milan-saroj/Narrative_Visualization/ma
                                                                                                                                           .attr('y',240)
                                                                                                                                           .attr('x',780)
                                                                                                                                           .attr('class', 'annotation_text')
-                                                                                                                                          .text('May 31,2020')
+                                                                                                                                          .text('May 31,2020').style('font-size',15).style("fill", "#9dabab")
 
                                                                                                                                             svg_final.append('text').attr('id','an26')
                                                                                                                                             .attr('y',255)
                                                                                                                                             .attr('x',780)
                                                                                                                                               .attr('class', 'title')
                                                                                                                                               .text('Memorial Day:')
-                                                                                                                                             .attr('class', 'annotation_text').attr('id','an27')
+                                                                                                                                             .attr('class', 'annotation_text').attr('id','an27').style('font-size',15).style("fill", "#9dabab")
                                                                                                                                                 svg_final.append('text').attr('id','an29')
                                                                                                                                                 .attr('y',270)
                                                                                                                                                 .attr('x',780)
                                                                                                                                                   .attr('class', 'title')
                                                                                                                                                   .text('Virus hospitalizations rise')
-                                                                                                                                                 .attr('class', 'annotation_text')
+                                                                                                                                                 .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
                                                                                                                                                  svg_final.append('text').attr('id','an28')
                                                                                                                                                  .attr('y',285)
                                                                                                                                                  .attr('x',780)
                                                                                                                                                    .attr('class', 'title')
                                                                                                                                                    .text('sharply after holiday')
-                                                                                                                                                  .attr('class', 'annotation_text')
+                                                                                                                                                  .attr('class', 'annotation_text').style('font-size',15).style("fill", "#9dabab")
 
 
 
