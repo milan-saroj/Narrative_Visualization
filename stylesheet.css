@@ -49,13 +49,13 @@ font-weight: bold;
 }
 
 .annotation_circle{
-  fill: #859489;
+  fill: #edbb3b;
   r: 4;
 }
 
 
 .title {
-  font-size: 35px;
+  font-size: 20px;
   font-family: serif;
 }
 
@@ -87,9 +87,9 @@ font-weight: bold;
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 16px;
+  padding: 5px 10px;
   transition: .5s;
-  font-size: 17px;
+  font-size: 13px;
 }
 
 
